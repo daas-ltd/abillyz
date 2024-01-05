@@ -24,7 +24,7 @@ jobs:
           MARIADB_PASSWORD: password
     env:
       RAILS_ENV: test
-      DB_HOST: mariadb
+      DB_HOST: 127.0.0.1
       DB_USER: abillyz
       DB_PASSWORD: password
     steps:
