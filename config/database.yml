@@ -12,10 +12,11 @@
 default: &default
   adapter: trilogy
   encoding: utf8mb4
+  collation: utf8mb4_general_ci
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: root
-  password:
-  socket: /var/run/mysqld/mysqld.sock
+  username: <%= ENV["DB_USER"] %>
+  password: <%= ENV["DB_PASSWORD"] %>
+  host: <%= ENV['DB_HOST'] %>
 
 development:
   <<: *default
@@ -50,6 +51,6 @@ test:
 #
 production:
   <<: *default
-  database: abillyz_production
-  username: abillyz
-  password: <%= ENV["ABILLYZ_DATABASE_PASSWORD"] %>
+  database: <%= ENV["DB_NAME"] %>
+  username: <%= ENV["DB_USER"] %>
+  password: <%= ENV["DB_PASSWORD"] %>
