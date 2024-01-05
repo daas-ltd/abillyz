@@ -21,6 +21,7 @@ jobs:
           - "3306:3306"
         env:
           MARIADB_ALLOW_EMPTY_PASSWORD: yes
+          MARIADB_ROOT_PASSWORD: abillyz
           MARIADB_USER: abillyz
           MARIADB_PASSWORD: password
         options: --health-cmd "mysqladmin ping" --health-interval 10s --health-timeout 5s --health-retries 10
