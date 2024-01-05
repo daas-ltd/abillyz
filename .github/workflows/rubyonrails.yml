@@ -7,23 +7,28 @@
 name: "Ruby on Rails CI"
 on:
   push:
-    branches: [ $default-branch ]
+    branches:
+      - main
   pull_request:
-    branches: [ $default-branch ]
+
 jobs:
   test:
     runs-on: ubuntu-latest
     services:
-      postgres:
+      mariadb:
         image: mariadb:10.11
         ports:
           - "3306:3306"
         env:
+          MARIADB_ALLOW_EMPTY_PASSWORD: yes
+          MARIADB_ROOT_PASSWORD: abillyz
+          MARIADB_DATABASE: abillyz_test
           MARIADB_USER: abillyz
           MARIADB_PASSWORD: password
+        options: --health-cmd "mysqladmin ping" --health-interval 10s --health-timeout 5s --health-retries 10
     env:
       RAILS_ENV: test
-      DB_HOST: db
+      DB_HOST: 127.0.0.1
       DB_USER: abillyz
       DB_PASSWORD: password
     steps:
