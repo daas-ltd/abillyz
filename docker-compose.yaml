@@ -1,0 +1,30 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    environment:
+      - DB_HOST=db
+      - DB_NAME=abillyz_production
+      - DB_USER=abillyz
+      - DB_PASSWORD=password
+      - RAILS_SERVE_STATIC_FILES=true
+      - SECRET_KEY_BASE=change_me
+  db:
+    image: mariadb:10.11
+    restart: always
+    volumes:
+      - db_data:/var/lib/mysql
+    environment:
+      - MARIADB_ROOT_PASSWORD=abillyz
+      - MARIADB_DATABASE=abillyz_production
+      - MARIADB_USER=abillyz
+      - MARIADB_PASSWORD=password
+
+volumes:
+    db_data:
