@@ -1,24 +1,30 @@
-# README
+# Abillyz
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+**このアプリケーションが現在開発中です。**  
+**https://abillyz.com/ として公開されているアプリケーションの機能をOSSで提供することを目的としています。**
 
-Things you may want to cover:
+Abillyz はMarkdownをサポートする強力なエディタで記事を投稿できるコンテンツ管理システムです。
 
-* Ruby version
+## Requirements
 
-* System dependencies
+Abillyz は次の主要な技術で構成されています。
 
-* Configuration
+- Ruby 3.3.0
+- Rails 7.1.2
+- MariaDB 10.11.x
+- vips
 
-* Database creation
+各ランタイムやミドルウェアを用意することも、このリポジトリに含まれる`docker-compose.yaml`を用いてアプリケーションを起動することもできます。  
 
-* Database initialization
+- Docker
+- Docker Compose
 
-* How to run the test suite
+## Installation
 
-* Services (job queues, cache servers, search engines, etc.)
+アプリケーションは Docker Compose を使用して起動できます。
 
-* Deployment instructions
-
-* ...
+```bash
+git clone https://github.com/daas-ltd/abillyz.git
+cd abillyz
+docker compose up -d
+```
