@@ -1,3 +1,14 @@
 <header class="flex justify-between w-full px-2">
   <h1>Abillyz</h1>
+  <nav>
+    <ul>
+      <li>
+        <% if user_signed_in? %>
+          <%= link_to t('.signout'), destroy_user_session_path, data: { "turbo-method": :delete, test_id: 'signout' } %>
+        <% else %>
+          <%= link_to t('.signin'), new_user_session_path, data: { "turbo-frame": false, test_id: 'signin' } %>
+        <% end %>
+      </li>
+    </ul>
+  </nav>
 </header>
