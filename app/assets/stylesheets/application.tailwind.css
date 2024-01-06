@@ -14,4 +14,20 @@
   .title-h2 {
     @apply mt-4 mb-8 text-2xl font-bold tracking-widest
   }
+
+  .form {
+    @apply w-full text-left rounded-lg p-4 border-none ring-1 focus:ring-2 break-words
+  }
+
+  .form-item {
+    @apply mb-6
+  }
+
+  .form-label {
+    @apply inline-block mb-1
+  }
+
+  .form-input-text {
+    @apply form
+  }
 }
