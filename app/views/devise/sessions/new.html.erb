@@ -19,7 +19,7 @@
       </div>
     <% end %>
 
-    <%= f.submit t('.sign_in'), class: "w-full btn-primary mt-3 mb-4" %>
+    <%= f.submit t('.sign_in'), class: "w-full btn-primary mt-3 mb-4", data: { test_id: 'submit' } %>
   <% end %>
 
   <%= render "devise/shared/links" %>
