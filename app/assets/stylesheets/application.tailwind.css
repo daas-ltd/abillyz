@@ -2,12 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
-/*
-
 @layer components {
+  .btn {
+    @apply min-w-[136px] max-h-[56px] p-4 rounded-lg bg-white border border-[0.5px] disabled:text-white text-center font-bold cursor-pointer leading-6 tracking-wider border-accent
+  }
+
   .btn-primary {
-    @apply py-2 px-4 bg-blue-200;
+    @apply btn text-white bg-accent
+  }
+
+  .title-h2 {
+    @apply mt-4 mb-8 text-2xl font-bold tracking-widest
   }
 }
-
-*/
