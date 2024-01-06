@@ -7,8 +7,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          authentication_keys: [:login]
 
-  validates :username, presence: true, uniqueness: { case_sensitive: false }
-  validates :username, format: { with: /^[a-zA-Z0-9_\.]*$/, multiline: true }
+  validates :username, presence: true, uniqueness: { case_sensitive: false },
+                       format: { with: /\A[a-zA-Z0-9_\.]*\z/, multiline: true }
 
   attr_writer :login
 
