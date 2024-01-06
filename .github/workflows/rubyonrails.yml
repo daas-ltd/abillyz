@@ -35,8 +35,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
       - uses: actions/setup-node@v3
+      # - name: Install playwright browsers
+      #   run: npx playwright install --with-deps chromium
       - name: Install playwright browsers
-        run: npx playwright install --with-deps chromium
+        run: npx playwright install --with-deps
       - name: Install Ruby and gems
         uses: ruby/setup-ruby@v1
         with:
