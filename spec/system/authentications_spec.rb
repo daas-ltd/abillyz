@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'Authentications' do
   describe 'Sign up' do
-    it 'is valid username, email, password' do
+    it 'is valid username, email, password', :head do
       visit root_path
       click_on 'signin'
       click_on 'signup-link'
