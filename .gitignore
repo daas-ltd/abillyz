@@ -42,6 +42,3 @@ spec/cassettes
 
 /app/assets/builds/*
 !/app/assets/builds/.keep
-
-# npm for playwright
-node_modules/
