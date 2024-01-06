@@ -78,3 +78,5 @@ end
 group :test do
   gem 'shoulda-matchers'
 end
+
+gem 'cancancan', '~> 3.5'
