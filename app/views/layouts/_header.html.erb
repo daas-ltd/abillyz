@@ -1,14 +1,21 @@
 <header class="flex justify-between items-center w-full p-2 text-white bg-primary">
-  <h1 class="text-3xl font-bold">Abillyz</h1>
+  <%= link_to root_path do %>
+    <h1 class="text-3xl font-bold">Abillyz</h1>
+  <% end %>
   <nav>
-    <ul>
-      <li>
-        <% if user_signed_in? %>
+    <ul class="flex gap-4">
+      <% if user_signed_in? %>
+        <li>
+          <%= link_to t('.new_post'), new_post_path, data: { test_id: 'new-post' }, class: 'btn-primary py-2' %>
+        </li>
+        <li>
           <%= link_to t('.signout'), destroy_user_session_path, data: { "turbo-method": :delete, test_id: 'signout' } %>
+        </li>
         <% else %>
+        <li>
           <%= link_to t('.signin'), new_user_session_path, data: { "turbo-frame": false, test_id: 'signin' } %>
-        <% end %>
-      </li>
+        </li>
+      <% end %>
     </ul>
   </nav>
 </header>
