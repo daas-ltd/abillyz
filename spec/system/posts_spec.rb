@@ -6,7 +6,7 @@ RSpec.describe 'Posts' do
   let(:user) { create(:user) }
   let(:post) { create(:post) }
 
-  describe 'create post', :head do
+  describe 'create post' do
     context 'when valid title, body' do
       it 'is success' do
         sign_in user
@@ -49,12 +49,11 @@ RSpec.describe 'Posts' do
       end
     end
 
-    # TODO: 認可エラーが発生した際にトップページに転送する
-    context 'when other user post', skip: 'missing redirect feature' do
+    context 'when other user post' do
       it 'is fail' do
         sign_in user
         visit edit_post_path(post)
-        expect(page).to have_current_path '/users/sign_in'
+        expect(page).to have_current_path '/'
       end
     end
   end
@@ -69,11 +68,11 @@ RSpec.describe 'Posts' do
       end
     end
 
-    context 'when other user post', skip: 'missing redirect feature' do
+    context 'when other user post' do
       it 'is fail' do
         sign_in user
         visit post_path(post)
-        expect(page).to have_current_path '/users/sign_in'
+        expect(page).to have_current_path '/'
       end
     end
   end
@@ -85,9 +84,7 @@ RSpec.describe 'Posts' do
     fill_in 'post[body]', with: body
     click_on 'submit'
 
-    # TODO: check flash message
-    sleep 0.1
-    # expect(page).to have_content '作成しました。'
+    expect(page).to have_css '[data-test-id="flash-message"]'
   end
 
   def update_post(post, title, body)
@@ -95,18 +92,13 @@ RSpec.describe 'Posts' do
     fill_in 'post[title]', with: title
     fill_in 'post[body]', with: body
     click_on 'submit'
-
-    # TODO: check flash message
-    sleep 0.1
-    # expect(page).to have_content '作成しました。'
+    expect(page).to have_css '[data-test-id="flash-message"]'
   end
 
   def delete_post(post)
     visit posts_path
     click_on post.title
     click_on 'delete-post'
-    # TODO: check flash message
-    sleep 0.1
-    # expect(page).to have_content '作成しました。'
+    expect(page).to have_css '[data-test-id="flash-message"]'
   end
 end
