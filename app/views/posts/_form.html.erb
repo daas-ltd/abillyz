@@ -1,22 +1,19 @@
 <%= form_with(model: post, data: { controller: "editor-markdown" } ) do |form| %>
   <div class="flex justify-between items-center">
-    <div class="form-item">
-      <%= form.label :title %>
-      <%= form.text_field :title, class: "form-input-text" %>
-    </div>
-    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer", data: { test_id: 'submit' } %>
+    <%= form.text_field :title, placeholder: t('activerecord.attributes.post.title'), class: "form-input-text p-2 mb-2 max-w-[400px] w-full" %>
+    <%= form.submit class: "btn-primary py-2", data: { test_id: 'submit' } %>
   </div>
 
   <div class="flex">
-    <div class="w-1/2 form-item">
+    <div class="w-1/2">
       <%= form.hidden_field :body, data: { editor_markdown_target: 'dest' } %>
       <div
-        class="w-full h-[calc(100dvh_-_400px)] [&_.cm-editor]:h-full"
+        class="w-full h-[calc(100dvh_-_115px)] [&_.cm-editor]:h-full"
         data-editor-markdown-target="code"
         data-test-id="code"
       ></div>
     </div>
-    <div class="h-[calc(100dvh_-_400px)] w-1/2 border">
+    <div class="h-[calc(100dvh_-_115px)] w-1/2 border">
       <iframe id="preview" data-editor-markdown-target="preview" class="h-full w-full">
     </div>
   </div>
