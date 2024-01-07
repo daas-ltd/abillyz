@@ -3,6 +3,7 @@
 class Ability
   include CanCan::Ability
 
-  # def initialize(user)
-  # end
+  def initialize(user)
+    can :manage, Post, { user: }
+  end
 end

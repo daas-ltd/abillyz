@@ -1,0 +1,13 @@
+<%= form_with(model: post, class: "contents") do |form| %>
+  <div class="form-item">
+    <%= form.label :title %>
+    <%= form.text_field :title, class: "form-input-text" %>
+  </div>
+
+  <div class="form-item">
+    <%= form.label :body %>
+    <%= form.text_area :body, rows: 4, class: "form-input-text" %>
+  </div>
+
+  <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer", data: { test_id: 'submit' } %>
+<% end %>

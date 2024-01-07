@@ -12,6 +12,8 @@ class User < ApplicationRecord
 
   attr_writer :login
 
+  has_many :posts, dependent: :destroy
+
   def login
     @login || username || email
   end
