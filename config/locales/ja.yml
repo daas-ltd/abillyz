@@ -11,6 +11,8 @@ ja:
       post:
         title: タイトル
         body: 本文
+  cancancan:
+    forbidden: '権限がありません。'
   date:
     abbr_day_names:
     - 日

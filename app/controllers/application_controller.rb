@@ -3,6 +3,13 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  # Redirect to top page in case of authorization error.
+  rescue_from CanCan::AccessDenied do
+    respond_to do |format|
+      format.html { redirect_to root_path, notice: t('cancancan.forbidden') }
+    end
+  end
+
   # Automatic addition of flash message in case of validation error.
   def render *args
     add_flash_message
