@@ -15,6 +15,18 @@
     @apply mt-4 mb-8 text-2xl font-bold tracking-widest
   }
 
+  .flash {
+    @apply border-[1px] rounded w-max min-w-[240px] md:min-w-[400px] pl-6 pr-6 py-2 text-sm text-left my-1
+  }
+
+  .flash-notice {
+    @apply flash bg-teal-100 border-teal-500 text-teal-900 
+  }
+
+  .flash-alert {
+    @apply flash bg-red-100 border-red-400 text-red-700
+  }
+
   .form {
     @apply w-full text-left rounded-lg p-4 border-none ring-1 focus:ring-2 break-words
   }

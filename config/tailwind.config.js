@@ -16,6 +16,15 @@ module.exports = {
         primary: '#09142e',
         accent: '#458a1a',
         warning: '#D82929',
+      },
+      animation: {
+        toast: 'toast 4s ease-in-out'
+      },
+      keyframes: {
+        toast: {
+          '0%, 100%': { opacity: 0 },
+          '5%, 80%': { opacity: 1 }
+        }
       }
     },
   },
