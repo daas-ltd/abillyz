@@ -81,7 +81,8 @@ RSpec.describe 'Posts' do
     visit posts_path
     click_on 'new-post'
     fill_in 'post[title]', with: title
-    fill_in 'post[body]', with: body
+    first('.cm-content').send_keys body
+    expect(page).to have_css '[data-test-id="code"][data-editor-status="sync"]'
     click_on 'submit'
 
     expect(page).to have_css '[data-test-id="flash-message"]'
@@ -90,7 +91,8 @@ RSpec.describe 'Posts' do
   def update_post(post, title, body)
     visit edit_post_path post
     fill_in 'post[title]', with: title
-    fill_in 'post[body]', with: body
+    first('.cm-content').send_keys body
+    expect(page).to have_css '[data-test-id="code"][data-editor-status="sync"]'
     click_on 'submit'
     expect(page).to have_css '[data-test-id="flash-message"]'
   end
