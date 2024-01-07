@@ -77,6 +77,18 @@ RSpec.describe 'Posts' do
     end
   end
 
+  describe 'preview markdown' do
+    it 'markdown to html is valid' do
+      sign_in user
+      visit new_post_path
+      first('.cm-content').send_keys "# h1-text\n- list"
+      within_frame('preview') do
+        expect(page).to have_content 'h1-text'
+        expect(page).to have_css 'ul'
+      end
+    end
+  end
+
   def create_post(title, body)
     visit posts_path
     click_on 'new-post'

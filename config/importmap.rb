@@ -32,3 +32,7 @@ pin "@lezer/html", to: "@lezer--html.js" # @1.3.8
 pin "@lezer/javascript", to: "@lezer--javascript.js" # @1.4.12
 pin "@lezer/lr", to: "@lezer--lr.js" # @1.3.14
 pin "@lezer/markdown", to: "@lezer--markdown.js" # @1.2.0
+
+# Preview markdown
+pin "marked" # @11.1.1
+pin "dompurify" # @3.0.8
