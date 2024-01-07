@@ -192,3 +192,6 @@ ja:
       signin: ログイン
       signout: ログアウト
       new_post: 投稿する
+  posts:
+    form:
+      thumbnail: サムネイル

@@ -16,6 +16,16 @@ RSpec.describe 'Posts' do
       end
     end
 
+    context 'when valid thumbnail', :head do
+      it 'is success' do
+        sign_in user
+        expect do
+          create_post('sample title', 'sample body', thumbnail: true)
+        end.to change(Post, :count).by(1)
+        expect(Post.last.thumbnail.attached?).to be true
+      end
+    end
+
     context 'when missing title' do
       it 'is fail' do
         sign_in user
@@ -89,11 +99,14 @@ RSpec.describe 'Posts' do
     end
   end
 
-  def create_post(title, body)
+  def create_post(title, body, thumbnail: false)
     visit posts_path
     click_on 'new-post'
     fill_in 'post[title]', with: title
     first('.cm-content').send_keys body
+    if thumbnail
+      attach_file 'post[thumbnail]', Rails.root.join('spec/fixtures/images/dummy.png').to_s, make_visible: true
+    end
     expect(page).to have_css '[data-test-id="code"][data-editor-status="sync"]'
     click_on 'submit'
 

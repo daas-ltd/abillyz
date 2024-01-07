@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/AbcSize, Metrics/MethodLength
 class DeviseCreateUsers < ActiveRecord::Migration[7.1]
   def change
     create_table :users do |t|
@@ -46,3 +47,4 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.1]
     end
   end
 end
+# rubocop:enable Metrics/AbcSize, Metrics/MethodLength
