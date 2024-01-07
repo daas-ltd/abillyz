@@ -42,11 +42,15 @@ import {
 import { markdown } from '@codemirror/lang-markdown'
 import { vim, Vim } from '@replit/codemirror-vim'
 import { oneDarkTheme, oneDarkHighlightStyle } from '@codemirror/theme-one-dark'
+import { marked } from 'marked'
+import DOMPurify from 'dompurify'
 
 export default class CodeEditor {
-  constructor(codeEl, destEl, lang='html', keybind='') {
+  constructor(codeEl, destEl, previewEl, lang='html', keybind='') {
     this.destEl = destEl
     this.codeEl = codeEl
+    this.previewEl = previewEl
+
     this.keymapConfig = new Compartment()
     this.editor = new EditorView({
       doc: destEl.value, // TODO : innerText? Value?
@@ -103,11 +107,20 @@ export default class CodeEditor {
       this.codeEl.setAttribute('data-editor-status', 'insync')
       this.debounce(
         () => {
+          const value = this.editor.state.doc.toString()
+          this.destEl.value = value
+          this.previewEl.srcdoc = this.renderHtml(value)
           this.destEl.value = this.editor.state.doc.toString()
           this.codeEl.setAttribute('data-editor-status', 'sync')
         },
         100
       )
     })
+  }
+
+  renderHtml (markdown) {
+    return DOMPurify.sanitize(
+      marked.parse(markdown)
+    )
   }
 }
