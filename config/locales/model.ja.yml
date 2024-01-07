@@ -1,0 +1,8 @@
+ja:
+  posts:
+    create:
+      notice: "作成しました。"
+    update:
+      notice: "更新しました。"
+    destroy:
+      notice: "削除しました。"
