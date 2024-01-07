@@ -3,6 +3,23 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  # Automatic addition of flash message in case of validation error.
+  def render *args
+    add_flash_message
+    super
+  end
+
+  def add_flash_message
+    return if flash.now.nil?
+
+    instance_variables.each do |iv|
+      var = instance_variable_get(iv)
+      if var.class.ancestors.include?(ActiveRecord::Core) && flash.alert.blank?
+        flash.now.alert = var.errors.full_messages
+      end
+    end
+  end
+
   protected
 
   def configure_permitted_parameters

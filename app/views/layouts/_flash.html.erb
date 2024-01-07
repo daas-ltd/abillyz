@@ -1,0 +1,20 @@
+<aside id="flash" class="absolute z-40 top-[60px] left-1/2 -translate-x-1/2 max-w-[1920px] w-full flex flex-col justify-center pointer-events-none">
+  <% flash.each do |(name, message)| -%>
+    <%# 文字列が渡された場合は配列に変換する %>
+    <% message = [message] if !message.instance_of?(Array) %>
+    <% message = message.uniq %>
+    <% message.each do |m| %>
+      <div
+        class="animate-toast flex justify-center"
+        data-controller="removals"
+        data-action="animationend->removals#remove"
+      >
+        <% if name == 'notice' %>
+          <p class="flash-notice" data-test-id="flash-notice"><%= m %></p>
+        <% elsif name == 'alert' %>
+          <p class="flash-alert" data-test-id="flash-alert"><%= m %></p>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+</aside>
