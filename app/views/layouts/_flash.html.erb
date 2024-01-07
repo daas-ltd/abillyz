@@ -8,6 +8,7 @@
         class="animate-toast flex justify-center"
         data-controller="removals"
         data-action="animationend->removals#remove"
+        data-action="flash-message"
       >
         <% if name == 'notice' %>
           <p class="flash-notice" data-test-id="flash-notice"><%= m %></p>
