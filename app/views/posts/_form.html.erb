@@ -1,6 +1,27 @@
 <%= form_with(model: post, data: { controller: "editor-markdown" } ) do |form| %>
   <div class="flex justify-between items-center">
-    <%= form.text_field :title, placeholder: t('activerecord.attributes.post.title'), class: "form-input-text p-2 mb-2 max-w-[400px] w-full" %>
+    <div class="flex items-center mb-1 h-[52px]">
+      <%= form.label :title, class: "hidden" %>
+      <%= form.text_field :title, placeholder: t('activerecord.attributes.post.title'), class: "form-input-text py-1 px-2 max-w-[400px] w-full" %>
+
+      <div data-controller="active-storage-preview" class="shrink-0">
+        <%= form.label :thumbnail, class: "cursor-pointer w-12 h-10" do %>
+          <% if post.thumbnail.attached? %>
+            <%= image_tag post.thumbnail, "data-active-storage-preview-target": "image preview", class: 'ml-2 w-16 h-10 object-cover' %>
+          <% else %>
+            <div data-active-storage-preview-target="label" class="flex flex-col items-center border border-dotted rounded-lg ml-2 p-1">
+              <span class="text-[9px]"><%= t('.thumbnail') %></span>
+              <%= image_tag '/images/image.svg', class: 'w-6 h-6' %>
+            </div>
+            <img data-active-storage-preview-target='preview' class="hidden ml-2 w-16 h-10 object-cover">
+          <% end %>
+        <% end %>
+        <%= form.file_field :thumbnail,
+          data: {active_storage_preview_target: "file" },
+          class: "hidden"
+        %>
+      </div>
+    </div>
     <%= form.submit class: "btn-primary py-2", data: { test_id: 'submit' } %>
   </div>
 
