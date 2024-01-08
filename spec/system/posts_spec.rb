@@ -147,7 +147,9 @@ RSpec.describe 'Posts' do
   def delete_post(post)
     visit posts_path
     click_on post.title
-    click_on 'delete-post'
+    page.accept_confirm do
+      click_on 'delete-post'
+    end
     expect(page).to have_css '[data-test-id="flash-message"]'
   end
 end
