@@ -1,11 +1,35 @@
-<div class="mx-auto md:w-2/3 w-full flex">
-  <div class="mx-auto">
-    <%= render @post %>
-
-    <%= link_to "Edit this post", edit_post_path(@post), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <div class="inline-block ml-2">
-      <%= button_to "Destroy this post", post_path(@post), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium", data: { test_id: 'delete-post' } %>
+<div class="flex max-w-[1440px] mx-auto gap-4 mt-4">
+  <article class="w-[70%]">
+    <div class="flex justify-between mb-8">
+      <h1 class="title-h1"><%= @post.title %></h1>
+      <div class="flex flex-col">
+        <div class="flex gap-4">
+          <%= link_to edit_post_path(@post) do %>
+            <%= image_tag '/images/pencil.svg', class: 'w-6 h-6' %>
+          <% end %>
+          <%= button_to post_path(@post), method: :delete, form: { data: { turbo_confirm: t('.confirm_delete') } }, data: { test_id: 'delete-post' }  do %>
+            <%= image_tag '/images/garbage.svg', class: 'w-6 h-6' %>
+          <% end %>
+          <span>@<%= @post.user.username %></span>
+        </div>
+        <% if @post.published_at.nil? %>
+          <p><%= t('.draft') %></p>
+        <% else %>
+          <p><time><%= t('.published_at', date: @post.published_at.strftime('%Y/%m/%d %H:%M')) %></time></p>
+        <% end %>
+        <%# TODO: Edited date %>
+        <%# TODO: SNS Links %>
+      </div>
     </div>
-    <%= link_to "Back to posts", posts_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-  </div>
+    <%= tag.iframe id: 'preview',
+      data: {
+        controller: 'render-markdown',
+        srcdoc: @post.body
+      },
+      class:'h-full w-full'
+    %>
+  </article>
+  <aside class="w-[30%]">
+    <%# TODO: Sidebar content %>
+  </aside>
 </div>

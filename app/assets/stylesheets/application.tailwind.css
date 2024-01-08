@@ -11,6 +11,10 @@
     @apply btn text-white bg-accent
   }
 
+  .title-h1 {
+    @apply mt-4 mb-8 text-2xl font-bold tracking-widest
+  }
+
   .title-h2 {
     @apply mt-4 mb-8 text-2xl font-bold tracking-widest
   }

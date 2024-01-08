@@ -193,6 +193,10 @@ ja:
       signout: ログアウト
       new_post: 投稿する
   posts:
+    show:
+      confirm_delete: 本当に削除しますか？
+      draft: 下書き中
+      published_at: "%{date} 公開"
     form:
       thumbnail: サムネイル
       published_true: 公開
