@@ -47,8 +47,10 @@ gem 'bootsnap', require: false
 # gem "image_processing", "~> 1.2"
 
 gem 'brakeman', '~> 6.1'
+gem 'cancancan', '~> 3.5'
 gem 'devise'
 gem 'devise-i18n'
+gem 'faker', '~> 3.2'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -79,5 +81,3 @@ end
 group :test do
   gem 'shoulda-matchers'
 end
-
-gem 'cancancan', '~> 3.5'

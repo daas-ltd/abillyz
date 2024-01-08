@@ -8,10 +8,5 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-2.times do |n|
-  User.find_or_create_by(email: "user#{n}@exapmle.com") do |user|
-    user.username = "user#{n}"
-    user.email = "user#{n}@example.com"
-    user.password = 'Pass1234'
-  end
-end
+require './db/seeds/user.rb'
+require './db/seeds/post.rb'
