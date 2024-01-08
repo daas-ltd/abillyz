@@ -6,6 +6,28 @@ RSpec.describe 'Posts' do
   let(:user) { create(:user) }
   let(:post) { create(:post) }
 
+  describe 'authz' do
+    context 'when published true post' do
+      it 'is visible' do
+        post = create(:post, published: true)
+
+        sign_in user
+        visit root_path
+        expect(page).to have_css "#post_#{post.id}"
+      end
+    end
+
+    context 'when published false post' do
+      it 'is invisible' do
+        create(:post, published: false)
+
+        sign_in user
+        visit root_path
+        expect(page).to have_no_css "#post_#{post.id}"
+      end
+    end
+  end
+
   describe 'create post' do
     context 'when valid title, body' do
       it 'is success' do
@@ -99,11 +121,11 @@ RSpec.describe 'Posts' do
     end
   end
 
-  def create_post(title, body, thumbnail: false)
-    visit posts_path
-    click_on 'new-post'
+  def create_post(title, body, published: true, thumbnail: false)
+    visit new_post_path
     fill_in 'post[title]', with: title
     first('.cm-content').send_keys body
+    choose "post_published_#{published}"
     if thumbnail
       attach_file 'post[thumbnail]', Rails.root.join('spec/fixtures/images/dummy.png').to_s, make_visible: true
     end

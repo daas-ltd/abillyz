@@ -21,6 +21,16 @@
           class: "hidden"
         %>
       </div>
+      <div class="ml-8 flex flex-col shrink-0 text-sm gap-1">
+        <div>
+          <%= form.radio_button :published, true, checked: post.published %>
+          <%= form.label :published, t('.published_true'), value: true %>
+        </div>
+        <div>
+          <%= form.radio_button :published, false, checked: !post.published %>
+          <%= form.label :published, t('.published_false'), value: false %>
+        </div>
+      </div>
     </div>
     <%= form.submit class: "btn-primary py-2", data: { test_id: 'submit' } %>
   </div>
@@ -29,12 +39,12 @@
     <div class="w-1/2">
       <%= form.hidden_field :body, data: { editor_markdown_target: 'dest' } %>
       <div
-        class="w-full h-[calc(100dvh_-_115px)] [&_.cm-editor]:h-full"
+        class="w-full h-[calc(100dvh_-_120px)] [&_.cm-editor]:h-full"
         data-editor-markdown-target="code"
         data-test-id="code"
       ></div>
     </div>
-    <div class="h-[calc(100dvh_-_115px)] w-1/2 border">
+    <div class="h-[calc(100dvh_-_120px)] w-1/2 border">
       <iframe id="preview" data-editor-markdown-target="preview" class="h-full w-full">
     </div>
   </div>

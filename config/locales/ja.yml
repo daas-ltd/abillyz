@@ -195,3 +195,5 @@ ja:
   posts:
     form:
       thumbnail: サムネイル
+      published_true: 公開
+      published_false: 非公開
