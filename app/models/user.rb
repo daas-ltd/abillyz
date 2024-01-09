@@ -13,6 +13,8 @@ class User < ApplicationRecord
   attr_writer :login
 
   has_many :posts, dependent: :destroy
+  has_one_attached :banner
+  has_one_attached :thumbnail
 
   def login
     @login || username || email

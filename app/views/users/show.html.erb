@@ -1,0 +1,39 @@
+<section class="max-w-[1024px] mx-auto">
+  <div class="w-full h-[300px] border shadow mb-4">
+  </div>
+  <% if @user.banner.attached? %>
+    <%= image_tag @user.banner, class: 'w-full h-full object-cover' %>
+  <% else %>
+    <div class="w-full h-full object-cover"></div>
+  <% end %>
+
+  <div class="flex gap-4 mb-12">
+    <div>
+      <div class="w-48 h-48 border-4 rounded-full bg-gray-100">
+        <% if @user.thumbnail.attached? %>
+          <%= image_tag @user.thumbnail, class: 'w-full h-full object-cover' %>
+        <% else %>
+          <div class="w-full h-full object-cover"></div>
+        <% end %>
+      </div>
+      <%# TODO: follow / follower %>
+    </div>
+    <div>
+      <div class="flex justify-between">
+        <p class="text-lg my-8">@<%= @user.username %></p>
+        <% if @user == current_user %>
+          <%# TODO: edit link %>
+        <% else %>
+          <%# TODO: follow button %>
+        <% end %>
+      </div>
+      <p><%= @user.bio %></p>
+    </div>
+  </div>
+  <div class="flex gap-4 flex-wrap">
+    <%# TODO: Pagenation%>
+    <% @user.posts.published.order(id: :desc).each do |post| %>
+      <%= render post %>
+    <% end %>
+  </div>
+</section>
