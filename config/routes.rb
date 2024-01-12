@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   root "top_pages#index"
 
   resources :posts
+  resources :users, except: %w(index)
 end

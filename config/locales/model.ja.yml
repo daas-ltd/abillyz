@@ -6,3 +6,6 @@ ja:
       notice: "更新しました。"
     destroy:
       notice: "削除しました。"
+  users:
+    update:
+      notice: "更新しました。"

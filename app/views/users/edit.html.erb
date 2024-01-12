@@ -1,0 +1,9 @@
+<section class="max-w-[1024px] mx-auto">
+  <%= turbo_frame_tag 'user' do %>
+    <%= form_with(model: @user, html: { data: { turbo_frame: '_top' } } ) do |form| %>
+      <%= render partial: 'profile', locals: { user: @user, form: form } %>
+    <% end %>
+  <% end %>
+
+  <%= render "posts", user: @user %>
+</section>

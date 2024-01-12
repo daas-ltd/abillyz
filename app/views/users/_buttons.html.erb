@@ -1,0 +1,23 @@
+<div>
+  <% if @user == current_user %>
+    <% if controller.action_name == 'show' %>
+      <%= link_to t('.edit'),
+        edit_user_path(user),
+        class: 'inline-block btn',
+        data: {
+          turbo_action: :advance,
+          test_id: 'edit'
+        }
+      %>
+    <% else %>
+      <%= form.submit class: 'btn-primary',
+        data: {
+          test_id: 'submit'
+        }
+      %>
+      <%= link_to t('.back'), user_path(user), class: 'inline-block btn', data: { turbo_action: :advance } %>
+    <% end %>
+  <% else %>
+    <%# TODO: follow button %>
+  <% end %>
+</div>

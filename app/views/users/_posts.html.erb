@@ -1,0 +1,6 @@
+<div class="flex gap-4 flex-wrap">
+  <%# TODO: Pagenation%>
+  <% user.posts.published.with_attached_thumbnail.order(id: :desc).each do |post| %>
+    <%= render post %>
+  <% end %>
+</div>

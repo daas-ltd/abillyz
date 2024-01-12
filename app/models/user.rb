@@ -9,10 +9,13 @@ class User < ApplicationRecord
 
   validates :username, presence: true, uniqueness: { case_sensitive: false },
                        format: { with: /\A[a-zA-Z0-9_\.]*\z/, multiline: true }
+  validates :bio, length: { maximum: 255 }
 
   attr_writer :login
 
   has_many :posts, dependent: :destroy
+  has_one_attached :banner
+  has_one_attached :icon
 
   def login
     @login || username || email

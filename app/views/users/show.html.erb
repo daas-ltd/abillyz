@@ -1,0 +1,7 @@
+<section class="max-w-[1024px] mx-auto">
+  <%= turbo_frame_tag 'user' do %>
+    <%= render "profile", user: @user, form: nil %>
+  <% end %>
+
+  <%= render "posts", user: @user %>
+</section>

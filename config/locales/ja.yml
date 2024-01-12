@@ -11,6 +11,8 @@ ja:
       post:
         title: タイトル
         body: 本文
+      user:
+        bio: 自己紹介文
   cancancan:
     forbidden: '権限がありません。'
   date:
@@ -192,6 +194,7 @@ ja:
       signin: ログイン
       signout: ログアウト
       new_post: 投稿する
+      profile: プロフィール
   posts:
     show:
       confirm_delete: 本当に削除しますか？
@@ -200,4 +203,11 @@ ja:
     form:
       thumbnail: サムネイル
       published_true: 公開
-      published_false: 非公開
+  users:
+    buttons:
+      edit: 編集
+      back: 戻る
+    banner:
+      edit: 編集
+    icon:
+      edit: 編集

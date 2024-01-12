@@ -1,6 +1,6 @@
 <aside id="flash" class="absolute z-40 top-[60px] left-1/2 -translate-x-1/2 max-w-[1920px] w-full flex flex-col justify-center pointer-events-none">
   <% flash.each do |(name, message)| -%>
-    <%# 文字列が渡された場合は配列に変換する %>
+    <%# string to array %>
     <% message = [message] if !message.instance_of?(Array) %>
     <% message = message.uniq %>
     <% message.each do |m| %>
