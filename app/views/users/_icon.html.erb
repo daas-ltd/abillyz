@@ -1,0 +1,19 @@
+<div class="relative shrink-0 w-48 h-48 border-4 rounded-full bg-gray-100 overflow-hidden">
+  <% if controller.action_name == 'edit' %>
+    <div data-controller="active-storage-preview" class="w-full h-full">
+  <% end %>
+    <% if user.icon.attached? %>
+      <%= image_tag user.icon, class: 'absolute top-0 left-0 w-full h-full object-cover', "data-active-storage-preview-target": "preview" %>
+    <% else %>
+      <img src="/images/people.svg" class="absolute top-0 left-0 w-full h-full object-cover" data-active-storage-preview-target="preview">
+    <% end %>
+
+    <% if controller.action_name == 'edit' %>
+      <%= form.label :icon, t('.edit'), class: "absolute-center cursor-pointer btn" %>
+      <%= form.file_field :icon,
+        data: {active_storage_preview_target: "file" },
+        class: "hidden"
+      %>
+    </div>
+    <% end %>
+</div>

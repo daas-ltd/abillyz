@@ -1,0 +1,7 @@
+<div>
+  <% if controller.action_name == 'edit' %>
+    <%= form.text_area :bio, class: 'form-input-text', maxlength: User.validators_on(:bio)[0].options[:maximum] %>
+  <% else %>
+    <p class="p-4"><%= user.bio %></p>
+  <% end %>
+</div>

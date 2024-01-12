@@ -1,0 +1,11 @@
+<%= render partial: 'banner', locals: { user: user, form: form } %>
+<div class="flex gap-4 mb-12">
+  <%= render partial: 'icon', locals: { user: user, form: form } %>
+  <div class="w-full">
+    <div class="flex justify-between">
+      <p class="text-lg my-8">@<%= @user.username %></p>
+      <%= render partial: 'buttons', locals: { user: user, form: form } %>
+    </div>
+    <%= render partial: 'bio', locals: { user: user, form: form} %>
+  </div>
+</div>

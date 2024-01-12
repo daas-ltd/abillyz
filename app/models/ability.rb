@@ -5,7 +5,7 @@ class Ability
 
   def initialize(user)
     can :read, User
-    can :manage, User, { user: }
+    can :manage, User, { id: user&.id }
 
     can :read, Post, { published: true }
     can :manage, Post, { user: }

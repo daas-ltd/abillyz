@@ -8,9 +8,49 @@
         <li>
           <%= link_to t('.new_post'), new_post_path, data: { test_id: 'new-post' }, class: 'btn-primary py-2' %>
         </li>
-        <li>
-          <%= link_to t('.signout'), destroy_user_session_path, data: { "turbo-method": :delete, test_id: 'signout' } %>
-        </li>
+        <div data-controller="toggle" class="relative flex items-center">
+          <%= button_tag type: 'button',
+            data: {
+              toggle_target: 'toggle',
+              action: 'click->toggle#click',
+              test_id: 'account'
+            },
+            class: "mr-3" do %>
+            <div class="w-7 h-7 lg:w-8 lg:h-8 bg-white rounded-full overflow-hidden">
+            <% if current_user.icon.attached? %>
+              <%= image_tag current_user.icon,
+                data: { test_id: 'account' },
+                class: 'w-full h-full object-cover'
+              %>
+            <% else %>
+              <%= image_tag "/images/people.svg",
+                data: { test_id: 'account' },
+                class: 'w-full h-full object-cover'
+              %>
+            <% end %>
+            </div>
+          <% end %>
+          <ul
+            data-toggle-target="menu"
+            class="absolute z-30 right-0 top-10 bg-white shadow-lg h-auto border hidden text-left w-max rounded-lg text-black"
+          >
+            <li>
+              <%= link_to t('.profile'),
+                user_path(current_user),
+                class: "inline-block w-full py-2 pl-4 pr-8",
+                data: { test_id: 'profile' }
+              %>
+            </li>
+            <hr>
+            <li>
+              <%= link_to t('.signout'),
+                destroy_user_session_path,
+                class: "inline-block w-full py-2 pl-4 pr-8",
+                data: { "turbo-method": :delete, test_id: 'signout' }
+              %>
+            </li>
+          </ul>
+        </div>
         <% else %>
         <li>
           <%= link_to t('.signin'), new_user_session_path, data: { "turbo-frame": false, test_id: 'signin' } %>

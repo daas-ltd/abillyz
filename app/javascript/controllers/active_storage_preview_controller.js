@@ -5,7 +5,6 @@ export default class extends Controller {
   static targets = [ "file", "preview", "label" ]
 
   connect() {
-    console.log(this)
     this.fileCheck()
   }
 
@@ -15,12 +14,18 @@ export default class extends Controller {
       const reader = new FileReader()
 
       reader.addEventListener("load", () => {
-        this.previewTarget.src = reader.result
+        this.previewTargets.forEach((preview) => {
+          preview.src = reader.result
+        })
       }, false)
       reader.readAsDataURL(file)
 
-      this.labelTarget.classList.add('hidden')
-      this.previewTarget.classList.remove('hidden')
+      this.labelTargets.forEach((label) => {
+        label.classList.add('hidden')
+      })
+      this.previewTargets.forEach((preview) => {
+        preview.classList.remove('hidden')
+      })
     })
   }
 }
