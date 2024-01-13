@@ -5,7 +5,11 @@ FactoryBot.define do
     user
     title { 'Sample Title' }
     body { 'Sample Body' }
-    published { false }
+    published { true }
     published_at { nil }
+
+    after(:build) do
+      FactoryBot.create(:post_default_thumbnail) if PostDefaultThumbnail.all.empty?
+    end
   end
 end
