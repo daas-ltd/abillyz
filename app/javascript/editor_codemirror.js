@@ -109,7 +109,8 @@ export default class CodeEditor {
         () => {
           const value = this.editor.state.doc.toString()
           this.destEl.value = value
-          this.previewEl.srcdoc = this.renderHtml(value)
+          // this.previewEl.srcdoc = this.renderHtml(value)
+          this.previewEl.setAttribute('data-render-markdown-body-value' ,this.renderHtml(value))
           this.destEl.value = this.editor.state.doc.toString()
           this.codeEl.setAttribute('data-editor-status', 'sync')
         },

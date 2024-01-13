@@ -8,6 +8,7 @@ pin_all_from "app/javascript/controllers", under: "controllers"
 
 # CodeMirror
 pin "editor_codemirror"
+pin "markdown_style"
 
 pin "@codemirror/commands", to: "@codemirror--commands.js" # @6.3.3
 pin "@codemirror/lint", to: "@codemirror--lint.js" # @6.4.2

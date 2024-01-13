@@ -46,7 +46,14 @@
       ></div>
     </div>
     <div class="h-[calc(100dvh_-_120px)] w-1/2 border">
-      <iframe id="preview" data-editor-markdown-target="preview" class="h-full w-full">
+      <div
+        id="preview"
+        data-controller="render-markdown"
+        data-editor-markdown-target="preview"
+        data-render-markdown-body-value="<%= @post.body %>"
+        data-test-id="preview"
+        class="w-full h-full overflow-y-scroll"
+      >
     </div>
   </div>
 <% end %>
