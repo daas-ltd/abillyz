@@ -211,6 +211,7 @@ ja:
     form:
       thumbnail: サムネイル
       published_true: 公開
+      published_false: 非公開
   users:
     buttons:
       edit: 編集
