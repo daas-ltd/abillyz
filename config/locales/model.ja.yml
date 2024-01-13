@@ -9,3 +9,6 @@ ja:
   users:
     update:
       notice: "更新しました。"
+    settings:
+      update:
+        notice: "更新しました。"

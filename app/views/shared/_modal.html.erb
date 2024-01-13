@@ -1,0 +1,12 @@
+<dialog id="modal" class="backdrop:bg-gray-600/80" data-controller="modals">
+  <div class="p-4 md:p-8">
+    <div class="flex justify-end">
+      <button
+        data-test-id="close-modal"
+        data-action="modals#close"
+        class="flex items-center justify-center btn-primary w-8 h-8 rounded-full"
+      >✕</button>
+    </div>
+    <%= yield %>
+  </div>
+</dialog>

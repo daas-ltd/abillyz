@@ -11,7 +11,6 @@
         <div data-controller="toggle" class="relative flex items-center">
           <%= button_tag type: 'button',
             data: {
-              toggle_target: 'toggle',
               action: 'click->toggle#click',
               test_id: 'account'
             },
@@ -39,6 +38,17 @@
                 user_path(current_user),
                 class: "inline-block w-full py-2 pl-4 pr-8",
                 data: { test_id: 'profile' }
+              %>
+            </li>
+            <li>
+              <%= link_to t('.settings'),
+                edit_users_settings_path(),
+                class: "inline-block w-full py-2 pl-4 pr-8",
+                data: {
+                  turbo_frame: 'modal',
+                  action: 'click->toggle#click',
+                  test_id: 'settings'
+                }
               %>
             </li>
             <hr>

@@ -15,6 +15,7 @@
   <body>
     <%= render 'layouts/header' %>
     <%= render 'layouts/flash' %>
+    <%= turbo_frame_tag 'modal' %>
     <main class="mt-2 px-2 max-w-screen w-full overflow-x-hidden">
       <%= yield %>
     </main>

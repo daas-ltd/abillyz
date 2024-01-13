@@ -4,7 +4,7 @@
 
 @layer components {
   .btn {
-    @apply min-w-[136px] max-h-[56px] p-4 rounded-lg bg-white border border-[0.5px] disabled:text-white text-center font-bold cursor-pointer leading-6 tracking-wider border-accent
+    @apply  max-h-[56px] p-4 rounded-lg bg-white border border-[0.5px] disabled:text-white text-center font-bold cursor-pointer leading-6 tracking-wider border-accent
   }
 
   .btn-primary {
