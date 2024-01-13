@@ -10,3 +10,4 @@
 
 require './db/seeds/user.rb'
 require './db/seeds/post.rb'
+require './db/seeds/post_default_thumbnail.rb'

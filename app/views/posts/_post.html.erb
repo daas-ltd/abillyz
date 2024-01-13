@@ -1,10 +1,16 @@
-<article id="<%= dom_id post %>" class="relative border shadow rounded w-[300px] h-[280px]">
-  <%= link_to post do %>
+<%= link_to post, data: { turbo_frame: '_top' } do %>
+  <article id="<%= dom_id post %>" class="relative border shadow rounded w-[300px] h-[280px]">
     <div class="h-[158px] w-[300px] flex justify-center items-center mb-2">
       <% if post.thumbnail.attached? %>
         <%= image_tag post.thumbnail, class: 'w-full h-full object-cover' %>
       <% else %>
-        <p class="bg-white bg-opacity-70 font-bold">
+
+        <% thumbnail = thumbnails.sample %>
+        <%= picture_tag do %>
+          <%= tag.source srcset: url_for(thumbnail.image.variant(:webp)), type: 'image/webp' %>
+          <%= image_tag thumbnail.image %>
+        <% end %>
+        <p class="absolute bg-white bg-opacity-80 font-bold py-2 px-8 rounded">
         <%= post.title %>
         </p>
       <% end %>
@@ -12,5 +18,5 @@
     <p class="px-2 text-lg leading-normal overflow-hidden mb-2"><%= post.title %></p>
     <p class="absolute bottom-2 left-2">@<%= post.user.username %></p>
     <time class="absolute bottom-2 right-2 text-sm text-gray-500"><%= post.published_at && post.published_at.strftime('%Y/%m/%d %H:%m') %></time>
-  <% end %>
-</article>
+  </article>
+<% end %>

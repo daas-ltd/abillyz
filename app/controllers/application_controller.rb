@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   # Redirect to top page in case of authorization error.
   rescue_from CanCan::AccessDenied do
     respond_to do |format|
-      format.html { redirect_to root_path, notice: t('cancancan.forbidden') }
+      format.html { redirect_to root_path, alert: t('cancancan.forbidden') }
     end
   end
 
