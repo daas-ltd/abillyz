@@ -11,5 +11,9 @@ Rails.application.routes.draw do
   root "top_pages#index"
 
   resources :posts
+
+  namespace :users do
+    resource :settings, only: %w(edit update)
+  end
   resources :users, except: %w(index)
 end

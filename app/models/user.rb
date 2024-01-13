@@ -13,6 +13,7 @@ class User < ApplicationRecord
 
   attr_writer :login
 
+  has_one :setting, class_name: 'Users::Setting', dependent: :destroy
   has_many :posts, dependent: :destroy
   has_one_attached :banner
   has_one_attached :icon

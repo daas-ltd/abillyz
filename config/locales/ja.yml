@@ -13,6 +13,9 @@ ja:
         body: 本文
       user:
         bio: 自己紹介文
+      users/setting:
+        default: 未設定
+        vim: Vim
   cancancan:
     forbidden: '権限がありません。'
   date:
@@ -195,6 +198,11 @@ ja:
       signout: ログアウト
       new_post: 投稿する
       profile: プロフィール
+      settings: エディタ設定
+  shared:
+    modal:
+      title: エディタ設定
+      keymap: キーマップ
   posts:
     show:
       confirm_delete: 本当に削除しますか？

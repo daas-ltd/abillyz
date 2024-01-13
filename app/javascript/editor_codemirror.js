@@ -46,7 +46,7 @@ import { marked } from 'marked'
 import DOMPurify from 'dompurify'
 
 export default class CodeEditor {
-  constructor(codeEl, destEl, previewEl, lang='html', keybind='') {
+  constructor(codeEl, destEl, previewEl, userKeymap) {
     this.destEl = destEl
     this.codeEl = codeEl
     this.previewEl = previewEl
@@ -55,7 +55,7 @@ export default class CodeEditor {
     this.editor = new EditorView({
       doc: destEl.value, // TODO : innerText? Value?
       extensions: [
-        this.keymapConfig.of(keybind ? this.keymaps[keybind]() : []),
+        this.keymapConfig.of(userKeymap ? this.keymaps[userKeymap]() : []),
         lineNumbers(),
         highlightActiveLineGutter(),
         foldGutter(),
