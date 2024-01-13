@@ -6,9 +6,7 @@ export default class extends Controller {
     'menu'
   ]
 
-  connect() {
-    console.log(this)
-  }
+  connect() {}
 
   click(event) {
     const els = document.querySelectorAll('[data-controller="toggle"] [data-toggle-target="menu"]')

@@ -113,11 +113,10 @@ RSpec.describe 'Posts' do
     it 'markdown to html is valid' do
       sign_in user
       visit new_post_path
-      first('.cm-content').send_keys "# h1-text\n- list"
-      within_frame('preview') do
-        expect(page).to have_content 'h1-text'
-        expect(page).to have_css 'ul'
-      end
+      first('.cm-content').send_keys '# sample heading'
+      shadow = find_by_id('preview')
+      expect(page).to have_css '[data-test-id="code"][data-editor-status="sync"]'
+      expect(shadow.shadow_root.text).to have_content 'sample heading'
     end
   end
 
