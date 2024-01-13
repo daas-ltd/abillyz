@@ -32,6 +32,7 @@ jobs:
       DB_USER: abillyz
       DB_PASSWORD: password
     steps:
+      - run: sudo apt-get install -y libvips
       - name: Checkout code
         uses: actions/checkout@v4
       - uses: actions/setup-node@v3
