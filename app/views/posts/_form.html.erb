@@ -1,5 +1,5 @@
 <%= form_with(model: post, data: { controller: "editor-markdown" } ) do |form| %>
-  <meta name="keymap" content="<%= current_user.setting&.keymap || Users::Setting.new.keymap%>" data-editor-markdown-target="keymap">
+  <meta name="keybind" content="<%= current_user.setting&.keybind || Users::Setting.new.keybind%>" data-editor-markdown-target="keybind">
   <div class="flex justify-between items-center">
     <div class="flex items-center mb-1 h-[52px]">
       <%= form.label :title, class: "hidden" %>

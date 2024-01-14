@@ -15,7 +15,7 @@ pin "@codemirror/lint", to: "@codemirror--lint.js" # @6.4.2
 pin "crelt" # @1.0.6
 pin "@codemirror/search", to: "@codemirror--search.js" # @6.5.5
 pin "@codemirror/theme-one-dark", to: "@codemirror--theme-one-dark.js" # @6.1.2
-pin "@codemirror/autocomplete", to: "@codemirror--autocomplete.js" # @6.11.1
+pin "@codemirror/autocomplete", to: "@codemirror--autocomplete.js" # @6.12.0
 pin "@codemirror/language", to: "@codemirror--language.js" # @6.10.0
 pin "@codemirror/state", to: "@codemirror--state.js" # @6.4.0
 pin "@codemirror/view", to: "@codemirror--view.js" # @6.23.0
@@ -24,6 +24,7 @@ pin "@lezer/highlight", to: "@lezer--highlight.js" # @1.2.0
 pin "style-mod" # @4.1.0
 pin "w3c-keyname" # @2.2.8
 pin "@replit/codemirror-vim", to: "@replit--codemirror-vim.js" # @6.1.0
+pin "@replit/codemirror-vscode-keymap", to: "@replit--codemirror-vscode-keymap.js" # @6.0.2
 pin "@codemirror/lang-markdown", to: "@codemirror--lang-markdown.js" # @6.2.3
 pin "@codemirror/lang-css", to: "@codemirror--lang-css.js" # @6.2.1
 pin "@codemirror/lang-html", to: "@codemirror--lang-html.js" # @6.4.7

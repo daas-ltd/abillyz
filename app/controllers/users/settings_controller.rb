@@ -19,7 +19,7 @@ module Users
     private
 
     def users_setting_params
-      params.require(:setting).permit(:keymap, :line_wrapping)
+      params.require(:setting).permit(:keybind, :line_wrapping)
     end
   end
 end

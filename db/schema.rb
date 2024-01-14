@@ -81,7 +81,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_13_141101) do
 
   create_table "users_settings", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.bigint "user_id"
-    t.integer "keymap", default: 0, null: false
+    t.integer "keybind", default: 0, null: false
     t.boolean "line_wrapping", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
