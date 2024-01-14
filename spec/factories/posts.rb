@@ -7,7 +7,7 @@ FactoryBot.define do
     body { 'Sample Body' }
     published { true }
     published_at { nil }
-    tags { 'abillyz sample' }
+    tags { 'abillyz myblog' }
 
     after(:build) do
       FactoryBot.create(:post_default_thumbnail) if PostDefaultThumbnail.all.empty?

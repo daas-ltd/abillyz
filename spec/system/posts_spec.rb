@@ -140,13 +140,13 @@ RSpec.describe 'Posts' do
     click_on 'submit'
   end
 
-  def create_post(title: 'title', body: 'body', tags: 'abillyz sample', published: true, thumbnail: false)
+  def create_post(title: 'title', body: 'body', tags: 'abillyz myblog', published: true, thumbnail: false)
     visit new_user_post_path(user)
     fill_post(title, body, tags, published, thumbnail)
     expect(page).to have_css '[data-test-id="flash-message"]'
   end
 
-  def update_post(title: 'updated title', body: 'body', tags: 'abillyz sample', published: true)
+  def update_post(title: 'updated title', body: 'body', tags: 'abillyz myblog', published: true)
     visit edit_user_post_path(user, post)
     fill_post(title, body, tags, published, false)
     expect(page).to have_css '[data-test-id="flash-message"]'

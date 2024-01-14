@@ -6,6 +6,6 @@
     title: Faker::Coffee.blend_name,
     body: Faker::Markdown.emphasis,
     published: n.even?,
-    tags: 'abillyz sample'
+    tags: 'abillyz myblogs'
   )
 end

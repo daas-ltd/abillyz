@@ -9,5 +9,7 @@ class Ability
 
     can :read, Post, { published: true }
     can :manage, Post, { user: }
+
+    can :manage, Tag
   end
 end
