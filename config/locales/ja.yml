@@ -228,3 +228,6 @@ ja:
       edit: 編集
     icon:
       edit: 編集
+  tags:
+    show:
+      tag: "#%{tag} タグ"

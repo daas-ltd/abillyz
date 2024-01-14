@@ -1,0 +1,7 @@
+<ul class="flex gap-2 text-sm text-gray-500">
+  <% tags.each do |tag| %>
+    <li>
+      <%= link_to tag.name, tag_path(tag), data: { turbo_action: :advance } %>
+    </li>
+  <% end %>
+</ul>

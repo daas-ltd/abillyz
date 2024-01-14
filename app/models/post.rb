@@ -21,7 +21,6 @@ class Post < ApplicationRecord
     tags = tags.split.map(&:strip) if tags.instance_of?(String)
     self.tags.clear
     tags.each do |tag|
-      errors.add(:base, I18n.t('.tag_length'))
       self.tags << if tag.instance_of?(Tag)
                      tag
                    else

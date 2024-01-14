@@ -16,4 +16,6 @@ Rails.application.routes.draw do
   resources :users, except: %w(index) do
     resources :posts, except: %w(index)
   end
+
+  resources :tags, only: %w(show)
 end
