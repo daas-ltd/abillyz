@@ -27,6 +27,17 @@ RSpec.describe 'Users::Settings' do
         expect(user.setting.reload.keybind).to eq 'vscode'
       end
     end
+
+    context 'when setting to emacs' do
+      it 'is sucess' do
+        sign_in user
+        open_settings
+        select 'Emacs', from: 'setting[keybind]'
+        click_on 'submit'
+        expect(page).to have_css '[data-test-id="flash-notice"]'
+        expect(user.setting.reload.keybind).to eq 'emacs'
+      end
+    end
   end
 
   def open_settings

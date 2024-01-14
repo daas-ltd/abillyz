@@ -25,6 +25,7 @@ pin "style-mod" # @4.1.0
 pin "w3c-keyname" # @2.2.8
 pin "@replit/codemirror-vim", to: "@replit--codemirror-vim.js" # @6.1.0
 pin "@replit/codemirror-vscode-keymap", to: "@replit--codemirror-vscode-keymap.js" # @6.0.2
+pin "@replit/codemirror-emacs", to: "@replit--codemirror-emacs.js" # @6.0.1
 pin "@codemirror/lang-markdown", to: "@codemirror--lang-markdown.js" # @6.2.3
 pin "@codemirror/lang-css", to: "@codemirror--lang-css.js" # @6.2.1
 pin "@codemirror/lang-html", to: "@codemirror--lang-html.js" # @6.4.7

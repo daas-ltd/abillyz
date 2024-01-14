@@ -17,6 +17,7 @@ ja:
         default: 未設定
         vscode: Visual Studio Code
         vim: Vim
+        emacs: Emacs
   cancancan:
     forbidden: '権限がありません。'
   date:

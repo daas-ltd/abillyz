@@ -42,6 +42,7 @@ import {
 import { markdown } from '@codemirror/lang-markdown'
 import { vim } from '@replit/codemirror-vim'
 import { vscodeKeymap } from '@replit/codemirror-vscode-keymap'
+import { emacs } from '@replit/codemirror-emacs'
 import { oneDarkTheme, oneDarkHighlightStyle } from '@codemirror/theme-one-dark'
 
 export default class CodeEditor {
@@ -77,7 +78,7 @@ export default class CodeEditor {
           ...historyKeymap,
           ...foldKeymap,
           ...completionKeymap,
-          indentWithTab
+          indentWithTab,
         ]),
         markdown(),
         oneDarkTheme,
@@ -93,6 +94,7 @@ export default class CodeEditor {
     default: () => [],
     vscode: () => [],
     vim,
+    emacs,
   }
 
   debounce (callback, interval) {

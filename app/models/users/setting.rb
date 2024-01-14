@@ -7,7 +7,8 @@ module Users
     enum :keybind, {
       default: 0,
       vscode: 1,
-      vim: 2
+      vim: 2,
+      emacs: 3
     }
 
     def self.keybinds_for_select
