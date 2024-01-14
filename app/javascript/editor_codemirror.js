@@ -79,6 +79,7 @@ export default class CodeEditor {
           ...foldKeymap,
           ...completionKeymap,
           indentWithTab,
+          userKeybind == 'vscode' ? this.keybind[userKeybind] : null
         ]),
         markdown(),
         oneDarkTheme,
