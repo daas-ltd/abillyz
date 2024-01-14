@@ -1,5 +1,5 @@
 <%= turbo_frame_tag 'posts' do %>
-  <h2 class="inline-block title-h2 ml-4 mb-2"><%= t('.tag', tag: @tag.name) %></h2>
+  <h2 class="inline-block title-h2 ml-4 mb-4"><%= t('.tag', tag: @tag.name) %></h2>
   <div class="flex flex-wrap gap-4 justify-center w-full mx-auto">
     <%= render @posts, cached: true %>
   </div>

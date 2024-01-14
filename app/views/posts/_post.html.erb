@@ -17,7 +17,11 @@
     </div>
     <p class="text-lg font-bold text-gray-700 leading-normal overflow-hidden px-2 mb-2"><%= post.title %></p>
     <%= render "tags/tags", tags: post.tags %>
-    <p class="absolute bottom-2 left-2">@<%= post.user.username %></p>
+    <p class="absolute bottom-2 left-2">
+      <%= link_to user_path(post.user), data: { turbo_frame: '_top'} do %>
+        @<%= post.user.username %>
+      <% end %>
+    </p>
     <time class="absolute bottom-2 right-2 text-sm text-gray-500"><%= post.published_at && post.published_at.strftime('%Y/%m/%d %H:%m') %></time>
   </article>
 <% end %>
