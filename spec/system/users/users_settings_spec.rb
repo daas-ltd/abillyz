@@ -42,7 +42,9 @@ RSpec.describe 'Users::Settings' do
 
   def open_settings
     visit root_path
+    expect(page).to have_css '[data-test-id="account"]'
     click_on 'account'
+    expect(page).to have_css '[data-test-id="settings"]'
     click_on 'settings'
   end
 end
