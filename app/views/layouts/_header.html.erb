@@ -7,7 +7,7 @@
       <% if user_signed_in? %>
         <% if controller.controller_name != 'posts' %>
           <li>
-            <%= link_to t('.new_post'), new_post_path, data: { test_id: 'new-post' }, class: 'btn-primary py-2' %>
+            <%= link_to t('.new_post'), new_user_post_path(current_user), data: { test_id: 'new-post' }, class: 'btn-primary py-2' %>
           </li>
         <% end %>
         <div data-controller="toggle" class="relative flex items-center">

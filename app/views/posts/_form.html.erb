@@ -1,4 +1,4 @@
-<%= form_with(model: post, data: { controller: "editor-markdown" } ) do |form| %>
+<%= form_with(model: [post.user, post], data: { controller: "editor-markdown" } ) do |form| %>
   <meta name="keybind" content="<%= current_user.setting&.keybind || Users::Setting.new.keybind%>" data-editor-markdown-target="keybind">
   <div class="flex justify-between items-center">
     <div class="flex items-center mb-1 h-[52px]">

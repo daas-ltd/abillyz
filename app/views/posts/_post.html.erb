@@ -1,4 +1,4 @@
-<%= link_to post, data: { turbo_frame: '_top' } do %>
+<%= link_to user_post_path(post.user, post), data: { turbo_frame: '_top' } do %>
   <article id="<%= dom_id post %>" class="relative border shadow rounded w-[300px] h-[280px]">
     <div class="h-[158px] w-[300px] flex justify-center items-center mb-2">
       <% if post.thumbnail.attached? %>

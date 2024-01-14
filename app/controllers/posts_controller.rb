@@ -16,7 +16,7 @@ class PostsController < ApplicationController
     @post = current_user.posts.build(post_params)
 
     if @post.save
-      redirect_to @post, notice: t('.notice')
+      redirect_to user_post_path(@post.user, @post), notice: t('.notice')
     else
       render :new, status: :unprocessable_entity
     end
@@ -24,7 +24,7 @@ class PostsController < ApplicationController
 
   def update
     if @post.update(post_params)
-      redirect_to @post, notice: t('.notice'), status: :see_other
+      redirect_to user_post_path(@post.user, @post), notice: t('.notice'), status: :see_other
     else
       render :edit, status: :unprocessable_entity
     end
