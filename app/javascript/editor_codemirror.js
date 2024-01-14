@@ -42,8 +42,6 @@ import {
 import { markdown } from '@codemirror/lang-markdown'
 import { vim, Vim } from '@replit/codemirror-vim'
 import { oneDarkTheme, oneDarkHighlightStyle } from '@codemirror/theme-one-dark'
-import { marked } from 'marked'
-import DOMPurify from 'dompurify'
 
 export default class CodeEditor {
   constructor(codeEl, destEl, previewEl, userKeymap) {
@@ -110,18 +108,12 @@ export default class CodeEditor {
           const value = this.editor.state.doc.toString()
           this.destEl.value = value
           // this.previewEl.srcdoc = this.renderHtml(value)
-          this.previewEl.setAttribute('data-render-markdown-body-value' ,this.renderHtml(value))
+          this.previewEl.setAttribute('data-render-markdown-body-value' ,value)
           this.destEl.value = this.editor.state.doc.toString()
           this.codeEl.setAttribute('data-editor-status', 'sync')
         },
         100
       )
     })
-  }
-
-  renderHtml (markdown) {
-    return DOMPurify.sanitize(
-      marked.parse(markdown)
-    )
   }
 }
