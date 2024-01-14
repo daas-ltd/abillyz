@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe 'Authentications' do
   describe 'Signup' do
     it 'is valid username, email, password' do
-      signup('user', 'test@example.com', 'password')
+      signup('example_user', 'test@example.com', 'password')
       expect(page).to have_css '[data-test-id="account"]'
     end
 
@@ -15,12 +15,12 @@ RSpec.describe 'Authentications' do
     end
 
     it 'is missing email' do
-      signup('user', '', 'password')
+      signup('example_user', '', 'password')
       expect(page).to have_no_css '[data-test-id="account"]'
     end
 
     it 'is missing password' do
-      signup('user', 'test@example.com', '')
+      signup('example_user', 'test@example.com', '')
       expect(page).to have_no_css '[data-test-id="account"]'
     end
   end

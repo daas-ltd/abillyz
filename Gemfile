@@ -51,6 +51,7 @@ gem 'cancancan', '~> 3.5'
 gem 'devise'
 gem 'devise-i18n'
 gem 'faker', '~> 3.2'
+gem 'friendly_id', '~> 5.5'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
