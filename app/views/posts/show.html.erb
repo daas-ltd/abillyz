@@ -13,7 +13,9 @@
           <%= button_to user_post_path(@post.user, @post), method: :delete, form: { data: { turbo_confirm: t('.confirm_delete') } }, data: { test_id: 'delete-post' }  do %>
             <%= image_tag '/images/garbage.svg', class: 'w-6 h-6' %>
           <% end %>
-          <span>@<%= @post.user.username %></span>
+          <%= link_to user_path(@post.user), data: { turbo_frame: '_top'} do %>
+            @<%= @post.user.username %>
+          <% end %>
         </div>
         <% if @post.published_at.nil? %>
           <p><%= t('.draft') %></p>
