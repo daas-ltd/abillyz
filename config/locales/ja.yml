@@ -7,9 +7,13 @@ ja:
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
+      post:
+        tag_count_limit: タグは5つ以内にしてください
     attributes:
       post:
         title: タイトル
+        tag: タグ
+        tags: タグ
         body: 本文
       user:
         bio: 自己紹介文
@@ -215,6 +219,7 @@ ja:
       thumbnail: サムネイル
       published_true: 公開
       published_false: 非公開
+      tag_placeholder: "タグ（半角スペース区切りで入力。例: HTML CSS）"
   users:
     buttons:
       edit: 編集

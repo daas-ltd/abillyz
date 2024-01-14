@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 User.find_or_create_by(email: 'user@exapmle.com') do |user|
-  user.username = 'user'
-  user.email = 'user@example.com'
+  user.username = 'usera'
+  user.email = 'usera@example.com'
   user.password = 'Pass1234'
 end
 

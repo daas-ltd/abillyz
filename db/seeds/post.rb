@@ -5,6 +5,7 @@
     user: User.first,
     title: Faker::Coffee.blend_name,
     body: Faker::Markdown.emphasis,
-    published: n.even?
+    published: n.even?,
+    tags: 'abillyz sample'
   )
 end

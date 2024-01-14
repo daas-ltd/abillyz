@@ -29,11 +29,11 @@ RSpec.describe 'Posts' do
   end
 
   describe 'create post' do
-    context 'when valid title, body' do
+    context 'when valid title, body and tags' do
       it 'is success' do
         sign_in user
         expect do
-          create_post('sample title', 'sample body')
+          create_post
         end.to change(Post, :count).by(1)
       end
     end
@@ -42,7 +42,7 @@ RSpec.describe 'Posts' do
       it 'is success' do
         sign_in user
         expect do
-          create_post('sample title', 'sample body', thumbnail: true)
+          create_post(thumbnail: true)
         end.to change(Post, :count).by(1)
         expect(Post.last.thumbnail.attached?).to be true
       end
@@ -52,7 +52,7 @@ RSpec.describe 'Posts' do
       it 'is fail' do
         sign_in user
         expect do
-          create_post('', 'sample body')
+          create_post(title: '')
         end.not_to change(Post, :count)
       end
     end
@@ -69,7 +69,7 @@ RSpec.describe 'Posts' do
     context 'when current_user post' do
       it 'is success' do
         sign_in post.user
-        update_post('updated title', 'updated body')
+        update_post
         expect(post.reload.title).to eq 'updated title'
       end
     end
@@ -126,8 +126,9 @@ RSpec.describe 'Posts' do
     end
   end
 
-  def fill_post(title, body, published, thumbnail)
+  def fill_post(title, body, tags, published, thumbnail)
     fill_in 'post[title]', with: title
+    fill_in 'post[tags]', with: tags
     first('.cm-content').send_keys body
     choose "post_published_#{published}"
     if thumbnail
@@ -139,15 +140,15 @@ RSpec.describe 'Posts' do
     click_on 'submit'
   end
 
-  def create_post(title, body, published: true, thumbnail: false)
+  def create_post(title: 'title', body: 'body', tags: 'abillyz sample', published: true, thumbnail: false)
     visit new_user_post_path(user)
-    fill_post(title, body, published, thumbnail)
+    fill_post(title, body, tags, published, thumbnail)
     expect(page).to have_css '[data-test-id="flash-message"]'
   end
 
-  def update_post(title, body, published: true)
+  def update_post(title: 'updated title', body: 'body', tags: 'abillyz sample', published: true)
     visit edit_user_post_path(user, post)
-    fill_post(title, body, published, false)
+    fill_post(title, body, tags, published, false)
     expect(page).to have_css '[data-test-id="flash-message"]'
   end
 
