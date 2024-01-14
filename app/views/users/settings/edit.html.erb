@@ -4,9 +4,8 @@
     <%= form_with(url: '/users/settings', method: :patch, class: 'max-w-[600px] w-[300px]') do |form| %>
 
       <div class="form-item">
-        <%= form.label 'setting[keymap]', t('.keymap'), class: "form-label" %><br />
-        <%#= form.text_field :keymap, autofocus: true, autocomplete: "email", class: "form-input-text" %>
-        <%= form.select 'setting[keymap]', Users::Setting.keymaps_for_select, selected: current_user.setting&.keymap %>
+        <%= form.label 'setting[keybind]', t('.keybind'), class: "form-label" %><br />
+        <%= form.select 'setting[keybind]', Users::Setting.keybinds_for_select, selected: current_user.setting&.keybind %>
       </div>
 
       <%= form.submit "保存",

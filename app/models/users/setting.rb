@@ -4,13 +4,14 @@ module Users
   class Setting < ApplicationRecord
     belongs_to :user
 
-    enum :keymap, {
+    enum :keybind, {
       default: 0,
-      vim: 1
+      vscode: 1,
+      vim: 2
     }
 
-    def self.keymaps_for_select
-      keymaps.map { |key, _| [human_attribute_name(key), key] }
+    def self.keybinds_for_select
+      keybinds.map { |key, _| [human_attribute_name(key), key] }
     end
   end
 end

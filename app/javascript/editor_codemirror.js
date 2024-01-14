@@ -40,20 +40,21 @@ import {
 } from '@codemirror/search'
 
 import { markdown } from '@codemirror/lang-markdown'
-import { vim, Vim } from '@replit/codemirror-vim'
+import { vim } from '@replit/codemirror-vim'
+import { vscodeKeymap } from '@replit/codemirror-vscode-keymap'
 import { oneDarkTheme, oneDarkHighlightStyle } from '@codemirror/theme-one-dark'
 
 export default class CodeEditor {
-  constructor(codeEl, destEl, previewEl, userKeymap) {
+  constructor(codeEl, destEl, previewEl, userKeybind) {
     this.destEl = destEl
     this.codeEl = codeEl
     this.previewEl = previewEl
 
-    this.keymapConfig = new Compartment()
+    this.keybindConfig = new Compartment()
     this.editor = new EditorView({
-      doc: destEl.value, // TODO : innerText? Value?
+      doc: destEl.value,
       extensions: [
-        this.keymapConfig.of(userKeymap ? this.keymaps[userKeymap]() : []),
+        this.keybindConfig.of(userKeybind ? this.keybind[userKeybind]() : []),
         lineNumbers(),
         highlightActiveLineGutter(),
         foldGutter(),
@@ -87,10 +88,11 @@ export default class CodeEditor {
       parent: codeEl
     })
   }
-  // Hash for keymap
-  keymaps = {
+  // Hash for keybind
+  keybind = {
     default: () => [],
-    vim
+    vscode: () => [],
+    vim,
   }
 
   debounce (callback, interval) {
