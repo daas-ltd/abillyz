@@ -10,10 +10,10 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "top_pages#index"
 
-  resources :posts, except: %w(index)
-
   namespace :users do
     resource :settings, only: %w(edit update)
   end
-  resources :users, except: %w(index)
+  resources :users, except: %w(index) do
+    resources :posts, except: %w(index)
+  end
 end

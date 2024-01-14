@@ -4,10 +4,10 @@
       <h1 class="title-h1"><%= @post.title %></h1>
       <div class="flex flex-col">
         <div class="flex gap-4">
-          <%= link_to edit_post_path(@post) do %>
+          <%= link_to edit_user_post_path(@post.user, @post) do %>
             <%= image_tag '/images/pencil.svg', class: 'w-6 h-6' %>
           <% end %>
-          <%= button_to post_path(@post), method: :delete, form: { data: { turbo_confirm: t('.confirm_delete') } }, data: { test_id: 'delete-post' }  do %>
+          <%= button_to user_post_path(@post.user, @post), method: :delete, form: { data: { turbo_confirm: t('.confirm_delete') } }, data: { test_id: 'delete-post' }  do %>
             <%= image_tag '/images/garbage.svg', class: 'w-6 h-6' %>
           <% end %>
           <span>@<%= @post.user.username %></span>

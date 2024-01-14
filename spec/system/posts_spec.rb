@@ -59,7 +59,7 @@ RSpec.describe 'Posts' do
 
     context 'when not logged in' do
       it 'is fail' do
-        visit new_post_path
+        visit new_user_post_path(user)
         expect(page).to have_current_path '/users/sign_in'
       end
     end
@@ -69,14 +69,14 @@ RSpec.describe 'Posts' do
     context 'when current_user post' do
       it 'is success' do
         sign_in post.user
-        update_post(post, 'updated title', 'updated body')
+        update_post('updated title', 'updated body')
         expect(post.reload.title).to eq 'updated title'
       end
     end
 
     context 'when not logged in' do
       it 'is fail' do
-        visit edit_post_path(post)
+        visit edit_user_post_path(post.user, post)
         expect(page).to have_current_path '/users/sign_in'
       end
     end
@@ -84,7 +84,7 @@ RSpec.describe 'Posts' do
     context 'when other user post' do
       it 'is fail' do
         sign_in user
-        visit edit_post_path(post)
+        visit edit_user_post_path(post.user, post)
         expect(page).to have_current_path '/'
       end
     end
@@ -97,7 +97,7 @@ RSpec.describe 'Posts' do
 
         sign_in post.user
         expect do
-          page.driver.submit :delete, post_path(post), {}
+          page.driver.submit :delete, user_post_path(post.user, post), {}
         end.to change(Post, :count).by(-1)
       end
     end
@@ -109,7 +109,7 @@ RSpec.describe 'Posts' do
         sign_in user
         post
         expect do
-          page.driver.submit :delete, post_path(post), {}
+          page.driver.submit :delete, user_post_path(post.user, post), {}
         end.not_to change(Post, :count)
       end
     end
@@ -118,7 +118,7 @@ RSpec.describe 'Posts' do
   describe 'preview markdown' do
     it 'markdown to html is valid' do
       sign_in user
-      visit new_post_path
+      visit new_user_post_path(user)
       first('.cm-content').send_keys '# sample heading'
       shadow = find_by_id('preview')
       expect(page).to have_css '[data-test-id="code"][data-editor-status="sync"]'
@@ -126,26 +126,28 @@ RSpec.describe 'Posts' do
     end
   end
 
-  def create_post(title, body, published: true, thumbnail: false)
-    visit new_post_path
+  def fill_post(title, body, published, thumbnail)
     fill_in 'post[title]', with: title
     first('.cm-content').send_keys body
     choose "post_published_#{published}"
     if thumbnail
-      attach_file 'post[thumbnail]', Rails.root.join('spec/fixtures/images/dummy.png').to_s, make_visible: true
+      attach_file 'post[thumbnail]', Rails.root.join('spec/fixtures/images/dummy.png').to_s,
+                  make_visible: true
     end
+
     expect(page).to have_css '[data-test-id="code"][data-editor-status="sync"]'
     click_on 'submit'
+  end
 
+  def create_post(title, body, published: true, thumbnail: false)
+    visit new_user_post_path(user)
+    fill_post(title, body, published, thumbnail)
     expect(page).to have_css '[data-test-id="flash-message"]'
   end
 
-  def update_post(post, title, body)
-    visit edit_post_path post
-    fill_in 'post[title]', with: title
-    first('.cm-content').send_keys body
-    expect(page).to have_css '[data-test-id="code"][data-editor-status="sync"]'
-    click_on 'submit'
+  def update_post(title, body, published: true)
+    visit edit_user_post_path(user, post)
+    fill_post(title, body, published, false)
     expect(page).to have_css '[data-test-id="flash-message"]'
   end
 
