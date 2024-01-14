@@ -1,9 +1,23 @@
 <%= form_with(model: [post.user, post], data: { controller: "editor-markdown" } ) do |form| %>
   <meta name="keybind" content="<%= current_user.setting&.keybind || Users::Setting.new.keybind%>" data-editor-markdown-target="keybind">
   <div class="flex justify-between items-center">
-    <div class="flex items-center mb-1 h-[52px]">
-      <%= form.label :title, class: "hidden" %>
-      <%= form.text_field :title, placeholder: t('activerecord.attributes.post.title'), class: "inline-block form-input-text py-1 px-2 mr-4 max-w-full w-[600px]" %>
+    <div class="flex items-center mb-1 h-[80px]">
+      <div class="flex flex-col gap-2">
+        <%= form.label :title, class: "hidden" %>
+        <%= form.text_field :title, placeholder: t('activerecord.attributes.post.title'), class: "inline-block form-input-text py-1 px-2 mr-4 max-w-full w-[600px]" %>
+        <div data-controller="tag-editors" class="relative text-sm max-w-full w-[600px]">
+          <div data-tag-editors-target="highlight" class="absolute top-0 inline-block w-full p-1 ml-[4px] text-transparent overflow-hidden"></div>
+          <%= form.text_field :tags,
+            value: post.tags.map(&:name).join(' '),
+            placeholder: t('.tag_placeholder'),
+            data: {
+              tag_editors_target: 'input',
+              action: 'input->tag-editors#updateOutput'
+            },
+            class: 'relative inline-block form-input-text !text-sm bg-transparent py-1 px-2 mr-4'
+          %>
+        </div>
+      </div>
 
       <div data-controller="active-storage-preview" class="shrink-0">
         <%= form.label :thumbnail, class: "cursor-pointer w-12 h-10" do %>
@@ -40,12 +54,12 @@
     <div class="w-1/2">
       <%= form.hidden_field :body, data: { editor_markdown_target: 'dest' } %>
       <div
-        class="w-full h-[calc(100dvh_-_120px)] [&_.cm-editor]:h-full"
+        class="w-full h-[calc(100dvh_-_150px)] [&_.cm-editor]:h-full"
         data-editor-markdown-target="code"
         data-test-id="code"
       ></div>
     </div>
-    <div class="h-[calc(100dvh_-_120px)] w-1/2 border">
+    <div class="h-[calc(100dvh_-_150px)] w-1/2 border">
       <div
         id="preview"
         data-controller="render-markdown"

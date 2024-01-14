@@ -39,7 +39,7 @@ RSpec.describe 'Users' do
 
   def navigate_profile
     visit root_path
-    click_on 'account'
+    click_on 'account-ready'
     click_on 'profile'
   end
 

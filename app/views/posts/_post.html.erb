@@ -11,11 +11,16 @@
           <%= image_tag thumbnail.image %>
         <% end %>
         <p class="absolute bg-white bg-opacity-80 font-bold py-2 px-8 rounded">
-        <%= post.title %>
+        <%= post.tags.first.name %>
         </p>
       <% end %>
     </div>
-    <p class="px-2 text-lg leading-normal overflow-hidden mb-2"><%= post.title %></p>
+    <p class="text-lg font-bold text-gray-700 leading-normal overflow-hidden px-2 mb-2"><%= post.title %></p>
+    <ul class="flex gap-2 px-2 text-sm text-gray-500">
+      <% post.tags.each do |tag| %>
+        <li><%= tag.name %></li>
+      <% end %>
+    </ul>
     <p class="absolute bottom-2 left-2">@<%= post.user.username %></p>
     <time class="absolute bottom-2 right-2 text-sm text-gray-500"><%= post.published_at && post.published_at.strftime('%Y/%m/%d %H:%m') %></time>
   </article>

@@ -6,22 +6,22 @@ RSpec.describe 'Authentications' do
   describe 'Signup' do
     it 'is valid username, email, password' do
       signup('example_user', 'test@example.com', 'password')
-      expect(page).to have_css '[data-test-id="account"]'
+      expect(page).to have_css '[data-test-id="account-ready"]'
     end
 
     it 'is missing username' do
       signup('', 'test@example.com', 'password')
-      expect(page).to have_no_css '[data-test-id="account"]'
+      expect(page).to have_no_css '[data-test-id="account-ready"]'
     end
 
     it 'is missing email' do
       signup('example_user', '', 'password')
-      expect(page).to have_no_css '[data-test-id="account"]'
+      expect(page).to have_no_css '[data-test-id="account-ready"]'
     end
 
     it 'is missing password' do
       signup('example_user', 'test@example.com', '')
-      expect(page).to have_no_css '[data-test-id="account"]'
+      expect(page).to have_no_css '[data-test-id="account-ready"]'
     end
   end
 
@@ -30,22 +30,22 @@ RSpec.describe 'Authentications' do
 
     it 'is valid username, password' do
       signin(user.username, user.password)
-      expect(page).to have_css '[data-test-id="account"]'
+      expect(page).to have_css '[data-test-id="account-ready"]'
     end
 
     it 'is valid email, password' do
       signin(user.email, user.password)
-      expect(page).to have_css '[data-test-id="account"]'
+      expect(page).to have_css '[data-test-id="account-ready"]'
     end
 
     it 'is missing login' do
       signin('', user.password)
-      expect(page).to have_no_css '[data-test-id="account"]'
+      expect(page).to have_no_css '[data-test-id="account-ready"]'
     end
 
     it 'is missing password' do
       signin(user.email, '')
-      expect(page).to have_no_css '[data-test-id="account"]'
+      expect(page).to have_no_css '[data-test-id="account-ready"]'
     end
   end
 

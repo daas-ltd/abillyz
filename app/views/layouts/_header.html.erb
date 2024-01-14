@@ -14,18 +14,17 @@
           <%= button_tag type: 'button',
             data: {
               action: 'click->toggle#click',
-              test_id: 'account'
+              test_id: 'account',
+              toggle_target: 'button'
             },
             class: "mr-3" do %>
             <div class="w-7 h-7 lg:w-8 lg:h-8 bg-white rounded-full overflow-hidden">
             <% if current_user.icon.attached? %>
               <%= image_tag current_user.icon,
-                data: { test_id: 'account' },
                 class: 'w-full h-full object-cover'
               %>
             <% else %>
               <%= image_tag "/images/people.svg",
-                data: { test_id: 'account' },
                 class: 'w-full h-full object-cover'
               %>
             <% end %>
