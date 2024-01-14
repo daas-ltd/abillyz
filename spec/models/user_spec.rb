@@ -20,5 +20,17 @@ RSpec.describe User do
     it 'invalid email IDN' do
       expect(build(:user, email: 'test@あびー.com')).not_to be_valid
     end
+
+    it 'reserved username: test' do
+      expect(build(:user, username: 'test')).not_to be_valid
+    end
+
+    it 'reserved username: admin' do
+      expect(build(:user, username: 'admin')).not_to be_valid
+    end
+
+    it 'reserved username: sign_in' do
+      expect(build(:user, username: 'sign_in')).not_to be_valid
+    end
   end
 end

@@ -5,6 +5,15 @@ require 'rails_helper'
 RSpec.describe 'Users' do
   let(:user) { create(:user) }
 
+  describe 'show profile' do
+    context 'when friendly_id access' do
+      it 'is success' do
+        visit user_path(user.username)
+        expect(page).to have_content "@#{user.username}"
+      end
+    end
+  end
+
   describe 'edit profile' do
     context 'when current_user profile' do
       it 'is success' do

@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
+  extend FriendlyId
+  friendly_id :username, use: :slugged
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -30,5 +32,9 @@ class User < ApplicationRecord
     elsif conditions.key?(:username) || conditions.key?(:email)
       where(conditions.to_h).first
     end
+  end
+
+  def should_generate_new_friendly_id?
+    username_changed? || super
   end
 end
