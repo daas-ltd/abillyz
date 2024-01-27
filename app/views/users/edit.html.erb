@@ -5,5 +5,5 @@
     <% end %>
   <% end %>
 
-  <%= render "posts", user: @user %>
+  <%= turbo_frame_tag 'posts', class: 'flex gap-4 flex-wrap' %>
 </section>

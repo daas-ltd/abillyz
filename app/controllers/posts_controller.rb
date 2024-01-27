@@ -1,8 +1,20 @@
 # frozen_string_literal: true
 
 class PostsController < ApplicationController
-  before_action :authenticate_user!, except: %w[show]
-  load_and_authorize_resource
+  before_action :authenticate_user!, except: %w[index show]
+  load_resource :user, only: %w[index]
+  load_and_authorize_resource :post, except: %w[index]
+
+  def index
+    @posts = @user.posts.accessible_by(current_ability)
+                  .published
+                  .order(published_at: :desc)
+                  .page(page)
+                  .includes(:tags)
+                  .with_attached_thumbnail
+
+    turbo_stream
+  end
 
   def show; end
 

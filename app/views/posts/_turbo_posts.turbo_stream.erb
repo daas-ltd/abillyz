@@ -1,0 +1,10 @@
+<%= turbo_stream.append "posts" do %>
+  <%= render posts %>
+<% end %>
+
+<%# infinite scroll %>
+<% if posts.next_page.present? %>
+  <%= turbo_stream.replace "load-more" do %>
+    <%= turbo_frame_tag "load-more", src: root_path(page: posts.next_page, format: :turbo_stream), loading: :lazy %>
+  <% end %>
+<% end %>
