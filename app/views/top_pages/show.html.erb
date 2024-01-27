@@ -1,0 +1,4 @@
+<%= turbo_frame_tag 'posts', class: 'flex gap-4 flex-wrap' %>
+
+<%# infinite scroll %>
+<%= turbo_frame_tag "load-more", src: top_pages_posts_path(page: 1, format: :turbo_stream), loading: :lazy %>

@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   devise_for :users
-  get 'top_pages/index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -8,7 +7,10 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   # Defines the root path route ("/")
-  root "top_pages#index"
+  root "top_pages#show"
+  namespace :top_pages do
+    resources :posts, only: %w(index)
+  end
 
   resources :tags, only: %w(show)
 
@@ -16,6 +18,6 @@ Rails.application.routes.draw do
     resource :settings, only: %w(edit update)
   end
   resources :users, path: '', except: %w(index new create destroy) do
-    resources :posts, except: %w(index)
+    resources :posts
   end
 end

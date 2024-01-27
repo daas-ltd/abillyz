@@ -4,7 +4,6 @@
       <% if post.thumbnail.attached? %>
         <%= image_tag post.thumbnail, class: 'w-full h-full object-cover' %>
       <% else %>
-
         <% thumbnail = thumbnails.sample %>
         <%= picture_tag do %>
           <%= tag.source srcset: url_for(thumbnail.image.variant(:webp)), type: 'image/webp' %>

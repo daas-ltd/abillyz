@@ -3,5 +3,8 @@
     <%= render "profile", user: @user, form: nil %>
   <% end %>
 
-  <%= render "posts", user: @user %>
+  <%= turbo_frame_tag 'posts', class: 'flex gap-4 flex-wrap' %>
+
+  <%# infinite scroll %>
+  <%= turbo_frame_tag "load-more", src: user_posts_path(@user, page: 1, format: :turbo_stream), loading: :lazy %>
 </section>

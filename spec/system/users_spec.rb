@@ -14,6 +14,19 @@ RSpec.describe 'Users' do
     end
   end
 
+  describe 'infinite scroll' do
+    it 'is working' do
+      create_list(:post, 26, published: true, user:)
+
+      visit user_path(user.username)
+      expect(page.all('#posts article').count).to eq 25
+
+      page.execute_script 'window.scrollBy(0,10000)'
+      expect(page).to have_css '[data-test-id="load-more-fullfil"]'
+      expect(page.all('#posts article').count).to eq 26
+    end
+  end
+
   describe 'edit profile' do
     context 'when current_user profile' do
       it 'is success' do
