@@ -53,13 +53,45 @@
   <div class="flex">
     <div class="w-1/2">
       <%= form.hidden_field :body, data: { editor_markdown_target: 'dest' } %>
+      <div id="editor-toolbar" class="flex justify-between h-[32px] border">
+        <div class="flex gap-2 items-center pl-2">
+          <% buttons = %w[undo redo bold italic strikethrough quote link code] %>
+          <% buttons.each do | button| %>
+            <button type="button" data-test-id="<%= button %>-button" data-action="editor-markdown#<%= button%>">
+              <%= image_tag "/images/#{button}.svg",
+                class: 'cursor-pointer object-fit h-[16px]'
+              %>
+            </button>
+          <% end %>
+          <!--
+          <input
+            id="markdown-image"
+            type="file"
+            class="hidden"
+            data-action="change->editor-markdown#image"
+          >
+          <label for="markdown-image">
+            <%= image_tag '/images/image.svg',
+              class: 'cursor-pointer object-fit h-[16px]'
+            %>
+          </label>
+          -->
+        </div>
+        <div class="flex gap-2 items-center pr-2">
+          <!--
+          <%= image_tag '/images/fullscreen.svg',
+            class: 'cursor-pointer object-fit h-[16px]'
+          %>
+          -->
+        </div>
+      </div>
       <div
-        class="w-full h-[calc(100dvh_-_150px)] [&_.cm-editor]:h-full"
+        class="w-full h-[calc(100dvh_-_192px)] [&_.cm-editor]:h-full"
         data-editor-markdown-target="code"
         data-test-id="code"
       ></div>
     </div>
-    <div class="h-[calc(100dvh_-_150px)] w-1/2 border">
+    <div class="h-[calc(100dvh_-_160px)] w-1/2 border">
       <div
         id="preview"
         data-controller="render-markdown"
