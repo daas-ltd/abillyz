@@ -18,4 +18,40 @@ export default class extends Controller {
   disconnect() {
     this.cm.editor.destroy()
   }
+
+  undo() {
+    this.cm.undoHandler()
+  }
+
+  redo() {
+    this.cm.redoHandler()
+  }
+
+  bold() {
+    this.cm.boldHandler()
+  }
+
+  italic() {
+    this.cm.italicHandler()
+  }
+
+  strikethrough() {
+    this.cm.strikethroughHandler()
+  }
+
+  quote() {
+    this.cm.quoteHandler()
+  }
+
+  link() {
+    this.cm.linkHandler()
+  }
+
+  code() {
+    this.cm.codeHandler()
+  }
+
+  image() {
+    this.cm.imageHandler()
+  }
 }
