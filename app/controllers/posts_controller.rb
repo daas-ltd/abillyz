@@ -3,7 +3,7 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, except: %w[index show]
   load_resource :user, only: %w[index]
-  load_and_authorize_resource :post, except: %w[index]
+  load_and_authorize_resource :post, except: %w[index create]
 
   def index
     @posts = @user.posts.accessible_by(current_ability)
@@ -18,19 +18,15 @@ class PostsController < ApplicationController
 
   def show; end
 
-  def new
-    @post = current_user.posts.build
-  end
-
   def edit; end
 
   def create
-    @post = current_user.posts.build(post_params)
+    @post = current_user.posts.build
 
     if @post.save
-      redirect_to user_post_path(@post.user, @post), notice: t('.notice')
+      redirect_to edit_user_post_path(@post.user, @post)
     else
-      render :new, status: :unprocessable_entity
+      redirect_to root_path
     end
   end
 

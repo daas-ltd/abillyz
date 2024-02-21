@@ -1,4 +1,5 @@
 import { Controller } from "@hotwired/stimulus"
+import { post } from "@rails/request.js"
 
 // Connects to data-controller="editor-markdown"
 export default class extends Controller {
@@ -51,7 +52,18 @@ export default class extends Controller {
     this.cm.codeHandler()
   }
 
-  image() {
-    this.cm.imageHandler()
+  async image(event) {
+    const formData = new FormData()
+    formData.append("post[image]", event.target.files[0])
+
+    const path = await post(event.target.dataset.postUrl, {
+      body: formData
+    }).then(response => response.json)
+      .then(data => data.path)
+
+    this.cm.imageHandler(path)
+
+    // reset input field
+    event.target.value = ''
   }
 }

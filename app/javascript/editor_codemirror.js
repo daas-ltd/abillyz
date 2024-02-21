@@ -222,9 +222,16 @@ export default class CodeEditor {
       })
     }
 
-    this.imageHandler = (event) => {
-      console.log('image')
-      // this.imageUpload(event.target.files[0])
+    this.imageHandler = (path) => {
+      const startAt = this.editor.state.selection.main.head
+
+      const text = `![](${path})\n`
+      this.editor.dispatch({
+        changes: {
+          from: startAt,
+          insert: text
+        }
+      })
     }
   }
   // Hash for keybind

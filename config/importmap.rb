@@ -39,3 +39,4 @@ pin "@lezer/markdown", to: "@lezer--markdown.js" # @1.2.0
 # Preview markdown
 pin "marked" # @11.1.1
 pin "dompurify" # @3.0.8
+pin "@rails/request.js", to: "@rails--request.js.js" # @0.0.9

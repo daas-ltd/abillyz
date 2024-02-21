@@ -18,6 +18,10 @@ Rails.application.routes.draw do
     resource :settings, only: %w(edit update)
   end
   resources :users, path: '', except: %w(index new create destroy) do
-    resources :posts
+    resources :posts, except: %w(new) do
+      scope module: 'posts' do
+        resource :images, only: %w(create)
+      end
+    end
   end
 end

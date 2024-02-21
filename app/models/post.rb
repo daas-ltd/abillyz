@@ -6,12 +6,13 @@ class Post < ApplicationRecord
   belongs_to :user
 
   has_one_attached :thumbnail
+  has_many_attached :images
+
   has_many :tagmaps, dependent: :destroy
   has_many :tags, through: :tagmaps
 
-  validates :title, presence: true, length: { maximum: 255 }
-  validates :body, presence: true
-  validates :tags, presence: true
+  validates :title, length: { maximum: 255 }
+  validate :before_publish_check
   validate :tag_count_check
 
   scope :published, -> { where(published: true) }
@@ -30,6 +31,14 @@ class Post < ApplicationRecord
   end
 
   private
+
+  def before_publish_check
+    return if published == false
+
+    errors.add(:title, :blank) if title.strip == ''
+    errors.add(:tags, :blank) if tags.count.zero?
+    errors.add(:body, :blank) if body.strip == ''
+  end
 
   def tag_count_check
     errors.add(:base, I18n.t('activerecord.errors.post.tag_count_limit')) if tags.length > MAX_TAGS
