@@ -4,7 +4,7 @@ import DOMPurify from 'dompurify'
 import MarkdownStyle from 'markdown_style'
 
 import hljs from 'https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/es/highlight.min.js'
-import hljsStyle from 'https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/atom-one-dark.min.css' assert { type: 'css' };
+import hljsStyle from 'https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/atom-one-dark.min.css' with { type: 'css' };
 
 // Connects to data-controller="render-markdown"
 export default class extends Controller {
