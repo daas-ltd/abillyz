@@ -1,0 +1,13 @@
+{
+  "name": "abillyz-app-1",
+  "dockerComposeFile": [
+    "../compose.yml"
+  ],
+  "service": "app",
+  "workspaceFolder": "/rails",
+  "customizations": {
+    "vscode": {
+      "extensions": []
+    }
+  }
+}
