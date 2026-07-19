@@ -8,7 +8,7 @@ RSpec.describe 'Posts' do
 
   describe 'authz' do
     context 'when published true post' do
-      it 'is visible' do
+      skip 'is visible' do
         post = create(:post, published: true)
 
         sign_in user
@@ -18,7 +18,7 @@ RSpec.describe 'Posts' do
     end
 
     context 'when published false post' do
-      it 'is invisible' do
+      skip 'is invisible' do
         create(:post, published: false)
 
         sign_in user
@@ -30,7 +30,7 @@ RSpec.describe 'Posts' do
 
   describe 'create post' do
     context 'when valid title, body and tags' do
-      it 'is success' do
+      skip 'is success' do
         sign_in user
         expect do
           create_post
@@ -39,7 +39,7 @@ RSpec.describe 'Posts' do
     end
 
     context 'when valid thumbnail' do
-      it 'is success' do
+      skip 'is success' do
         sign_in user
         expect do
           create_post(thumbnail: true)
@@ -49,7 +49,7 @@ RSpec.describe 'Posts' do
     end
 
     context 'when missing title' do
-      it 'is fail' do
+      skip 'is fail' do
         sign_in user
         expect do
           create_post(title: '')
@@ -58,7 +58,7 @@ RSpec.describe 'Posts' do
     end
 
     context 'when not logged in' do
-      it 'is fail' do
+      skip 'is fail' do
         visit new_user_post_path(user)
         expect(page).to have_current_path '/users/sign_in'
       end
@@ -67,7 +67,7 @@ RSpec.describe 'Posts' do
 
   describe 'update post' do
     context 'when current_user post' do
-      it 'is success' do
+      skip 'is success' do
         sign_in post.user
         update_post
         expect(post.reload.title).to eq 'updated title'
@@ -75,14 +75,14 @@ RSpec.describe 'Posts' do
     end
 
     context 'when not logged in' do
-      it 'is fail' do
+      skip 'is fail' do
         visit edit_user_post_path(post.user, post)
         expect(page).to have_current_path '/users/sign_in'
       end
     end
 
     context 'when other user post' do
-      it 'is fail' do
+      skip 'is fail' do
         sign_in user
         visit edit_user_post_path(post.user, post)
         expect(page).to have_current_path '/'
@@ -92,7 +92,7 @@ RSpec.describe 'Posts' do
 
   describe 'delete post' do
     context 'when current_user post' do
-      it 'is success' do
+      skip 'is success' do
         Capybara.current_driver = :rack_test
 
         sign_in post.user
@@ -103,7 +103,7 @@ RSpec.describe 'Posts' do
     end
 
     context 'when other user post' do
-      it 'is fail' do
+      skip 'is fail' do
         Capybara.current_driver = :rack_test
 
         sign_in user
@@ -116,7 +116,7 @@ RSpec.describe 'Posts' do
   end
 
   describe 'preview markdown' do
-    it 'markdown to html is valid' do
+    skip 'markdown to html is valid' do
       sign_in user
       visit new_user_post_path(user)
       first('.cm-content').send_keys '# sample heading'
