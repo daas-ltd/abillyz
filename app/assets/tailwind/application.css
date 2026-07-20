@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter var", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+
+  --color-primary: #09142e;
+  --color-accent: #458a1a;
+  --color-warning: #D82929;
+
+  --animate-toast: toast 4s ease-in-out;
+
+  @keyframes toast {
+    0%, 100% { opacity: 0; }
+    5%, 80% { opacity: 1; }
+  }
+}
+
+.btn {
+  @apply max-h-[56px] p-4 rounded-lg bg-white border border-[0.5px] disabled:text-white text-center font-bold cursor-pointer leading-6 tracking-wider border-accent;
+  
+  &.btn-primary {
+    @apply text-white bg-accent;
+  }
+}
+
+.absolute-center {
+  @apply absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2;
+}
+
+.title-h1, .title-h2 {
+  @apply mt-4 mb-8 text-2xl font-bold tracking-widest;
+}
+
+.flash {
+  @apply border-[1px] rounded w-max min-w-[240px] md:min-w-[400px] pl-6 pr-6 py-2 text-sm text-left my-1;
+
+  &.flash-notice {
+    @apply bg-teal-100 border-teal-500 text-teal-900;
+  }
+
+  &.flash-alert {
+    @apply bg-red-100 border-red-400 text-red-700;
+  }
+}
+
+.form {
+  @apply w-full text-left rounded-lg p-4 border-none ring-1 focus:ring-2 break-words;
+}
+
+.form-input-text {
+  @apply w-full text-left rounded-lg p-4 border-none ring-1 focus:ring-2 break-words;
+}
+
+.form-item {
+  @apply mb-6;
+}
+
+.form-label {
+  @apply inline-block mb-1;
+}

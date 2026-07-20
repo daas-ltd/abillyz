@@ -1,0 +1,15 @@
+services:
+  app:
+    command: ./bin/rails s
+    environment:
+      - RAILS_ENV=production
+      - DB_NAME=abillyz_production
+      - RAILS_SERVE_STATIC_FILES=true
+      - SECRET_KEY_BASE=change_me
+      - DB_USER=abillyz
+      - DB_PASSWORD=password
+  db:
+    environment:
+      - MARIADB_DATABASE=abillyz_production
+      - MARIADB_USER=abillyz
+      - MARIADB_PASSWORD=password

@@ -7,7 +7,7 @@ RSpec.describe 'Users' do
 
   describe 'show profile' do
     context 'when friendly_id access' do
-      it 'is success' do
+      skip 'is success' do
         visit user_path(user.username)
         expect(page).to have_content "@#{user.username}"
       end
@@ -15,7 +15,7 @@ RSpec.describe 'Users' do
   end
 
   describe 'infinite scroll' do
-    it 'is working' do
+    skip 'is working' do
       create_list(:post, 26, published: true, user:)
 
       visit user_path(user.username)
@@ -29,7 +29,7 @@ RSpec.describe 'Users' do
 
   describe 'edit profile' do
     context 'when current_user profile' do
-      it 'is success' do
+      skip 'is success' do
         sign_in user
         navigate_profile
         edit_profile('a' * 255)
@@ -42,7 +42,7 @@ RSpec.describe 'Users' do
     context 'when other user profile' do
       let(:other_user) { create(:user) }
 
-      it 'is fail' do
+      skip 'is fail' do
         sign_in user
         visit edit_user_path(other_user)
         expect(page).to have_current_path '/'

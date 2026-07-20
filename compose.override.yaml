@@ -1,0 +1,24 @@
+services:
+  app:
+    build:
+      target: development
+    command: >
+      bash -c "
+        bin/rails db:prepare &&
+        bin/dev
+      "
+    ports:
+      - "3000:3000"
+    tty: true
+    stdin_open: true
+    volumes:
+      - .:/rails
+      - /rails/tmp
+    environment:
+      - RAILS_ENV=development
+      - DB_USER=root
+      - DB_PASSWORD=password
+  db:
+    environment:
+      - MARIADB_DATABASE=abillyz_development
+      - MARIADB_ROOT_PASSWORD=password
