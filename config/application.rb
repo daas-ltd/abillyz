@@ -37,16 +37,6 @@ module Abillyz
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
 
-    # add rails generators config, remove test files
-    config.generators do |g|
-      g.test_framework  :rspec,
-      view_specs: false,
-      helper_specs: false,
-      routing_specs: false,
-      request_specs: false
-      g.factory_bot true
-    end
-
     # i18n, change default locale to ja
     config.i18n.default_locale = :ja
   end

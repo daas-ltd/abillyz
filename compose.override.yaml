@@ -4,16 +4,19 @@ services:
       target: development
     command: >
       bash -c "
-        bin/rails db:prepare &&
-        bin/dev
+        bin/rails db:prepare
+        sleep infinity
       "
     ports:
       - "3000:3000"
     tty: true
     stdin_open: true
     volumes:
-      - .:/rails
+      - ${PWD}:/rails
+      - ${HOME}/.aws:${HOME}/.aws:ro
+      - ${HOME}/.claude:/home/rails/.claude
       - /rails/tmp
+      - /var/run/docker.sock:/var/run/docker.sock
     environment:
       - RAILS_ENV=development
       - DB_USER=root
@@ -22,3 +25,13 @@ services:
     environment:
       - MARIADB_DATABASE=abillyz_development
       - MARIADB_ROOT_PASSWORD=password
+
+  selenium:
+    image: selenium/standalone-chrome:latest
+    restart: always
+    ports:
+      - "4444:4444"
+      - "7900:7900"
+    shm_size: 2g
+    environment:
+      - VNC_NO_PASSWORD=1

@@ -1,0 +1,33 @@
+one:
+  user: one
+  title: Sample Title 1
+  body: Sample Body 1
+  published: true
+  published_at: 2024-01-01 00:00:00
+  created_at: 2024-01-01 00:00:00
+  updated_at: 2024-01-01 00:00:00
+  tags: abillyz myblog
+
+two:
+  user: one
+  title: Sample Title 2
+  body: Sample Body 2
+  published: false
+  published_at: nil
+  created_at: 2024-01-01 00:00:00
+  updated_at: 2024-01-01 00:00:00
+  tags: abillyz
+
+# Add more posts for infinite scroll testing
+<% (3..30).each do |i| %>
+post<%= i %>:
+  user: one
+  title: Sample Title <%= i %>
+  body: Sample Body <%= i %>
+  published: true
+  published_at: 2024-01-01 00:00:00
+  created_at: 2024-01-01 00:00:00
+  updated_at: 2024-01-01 00:00:00
+  tags: abillyz
+<% end %>
+

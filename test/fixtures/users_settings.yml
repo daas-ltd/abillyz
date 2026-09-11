@@ -1,0 +1,13 @@
+one:
+  user_id: 1
+  keybind: 0
+  line_wrapping: true
+  created_at: 2024-01-01 00:00:00
+  updated_at: 2024-01-01 00:00:00
+
+two:
+  user_id: 2
+  keybind: 1
+  line_wrapping: false
+  created_at: 2024-01-01 00:00:00
+  updated_at: 2024-01-01 00:00:00

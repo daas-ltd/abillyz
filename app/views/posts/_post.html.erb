@@ -5,12 +5,18 @@
         <%= image_tag post.thumbnail, class: 'w-full h-full object-cover' %>
       <% else %>
         <% thumbnail = thumbnails.sample %>
-        <%= picture_tag do %>
-          <%= tag.source srcset: url_for(thumbnail.image.variant(:webp)), type: 'image/webp' %>
-          <%= image_tag thumbnail.image %>
+        <% if thumbnail %>
+          <%= picture_tag do %>
+            <%= tag.source srcset: url_for(thumbnail.image.variant(:webp)), type: 'image/webp' %>
+            <%= image_tag thumbnail.image %>
+          <% end %>
+        <% else %>
+          <div class="bg-gray-200 w-full h-full flex items-center justify-center text-gray-400">
+            No Image
+          </div>
         <% end %>
         <p class="absolute bg-white bg-opacity-80 font-bold py-2 px-8 rounded">
-        <%= post.tags.first.name %>
+        <%= post.tags.first&.name || 'No Tags' %>
         </p>
       <% end %>
     </div>
