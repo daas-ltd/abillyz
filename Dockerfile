@@ -2,7 +2,7 @@
 
 # Make sure RUBY_VERSION matches the Ruby version in .ruby-version and Gemfile
 ARG RUBY_VERSION=4.0.5
-FROM registry.docker.com/library/ruby:$RUBY_VERSION-slim as base
+FROM registry.docker.com/library/ruby:$RUBY_VERSION-trixie as base
 
 # Rails app lives here
 WORKDIR /rails
@@ -69,7 +69,7 @@ ENV RAILS_ENV=development \
     BUNDLE_WITHOUT=""
 
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y build-essential git libvips libyaml-dev libssl-dev pkg-config curl && \
+    apt-get install --no-install-recommends -y build-essential git libvips libyaml-dev libssl-dev pkg-config curl chromium chromium-driver && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
 COPY --from=build /usr/local/bundle /usr/local/bundle
@@ -79,5 +79,7 @@ RUN bundle install
 
 RUN useradd rails --create-home --shell /bin/bash && \
     chown -R rails:rails db log storage tmp
+
+USER rails
 
 CMD ["bin/dev"]

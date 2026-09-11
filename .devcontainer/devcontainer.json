@@ -1,13 +1,19 @@
 {
   "name": "abillyz-app-1",
   "dockerComposeFile": [
-    "../compose.yml"
+    "../compose.yaml",
+    "../compose.override.yaml"
   ],
   "service": "app",
   "workspaceFolder": "/rails",
   "customizations": {
     "vscode": {
-      "extensions": []
+      "extensions": [
+        "anthropic.claude-code"
+      ],
+      "settings": {
+        "claudeCode.allowDangerouslySkipPermissions": true
+      }
     }
   }
 }

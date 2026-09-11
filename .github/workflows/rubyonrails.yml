@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     services:
       mariadb:
-        image: mariadb:10.11
+        image: mariadb:11.4
         ports:
           - "3306:3306"
         env:
@@ -47,7 +47,9 @@ jobs:
       - name: Pre compile assets
         run: bin/rails assets:precompile --quiet
       - name: Run tests
-        run: bundle exec rspec
+        run: bin/rails test
+      - name: Run tests
+        run: bin/rails test:system
 
   lint:
     runs-on: ubuntu-latest
